@@ -1,7 +1,8 @@
-package com.skylabstechke.foody
+package com.skylabstechke.foody.screens
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.skylabstechke.foody.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
