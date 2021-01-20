@@ -1,4 +1,4 @@
-package com.skylabstechke.foody.screens
+package com.skylabstechke.foody.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

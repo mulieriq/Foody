@@ -1,4 +1,4 @@
-package com.skylabstechke.foody.screens.fragments
+package com.skylabstechke.foody.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
