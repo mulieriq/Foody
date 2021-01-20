@@ -14,12 +14,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val appBarConfig = AppBarConfiguration(setOf(R.id.recipesFragment, R.id.favoriteRecipesFragment, R.id.foodJokeFragment))
 
-        setupActionBarWithNavController(findNavController(R.id.navHostMain),appBarConfig)
-        findViewById<BottomNavigationView>(R.id.bottomNavigationView).apply {
-            setupWithNavController(findNavController(R.id.navHostMain))
-        }
+
+        setupActionBarWithNavController(findNavController(R.id.navHostMain))
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
