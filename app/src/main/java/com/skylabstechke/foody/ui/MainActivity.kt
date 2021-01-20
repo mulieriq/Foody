@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.foodJokeFragment
         ))
 
-        setupActionBarWithNavController(findNavController(R.id.navHostMain),appbarconfig)
+        setupActionBarWithNavController(findNavController(R.id.navHostMain), appbarconfig)
         findViewById<BottomNavigationView>(R.id.bottomNavigationView).apply {
             setupWithNavController(findNavController(R.id.navHostMain))
         }
