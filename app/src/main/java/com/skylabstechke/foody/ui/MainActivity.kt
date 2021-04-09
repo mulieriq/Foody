@@ -14,14 +14,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val appbarconfig = AppBarConfiguration(setOf(
+//bottom configs
+        val appbarconfigs = AppBarConfiguration(setOf(
                 R.id.recipesFragment,
                 R.id.favoriteRecipesFragment,
                 R.id.foodJokeFragment
         ))
        //set app bar configs
-        setupActionBarWithNavController(findNavController(R.id.navHostMain), appbarconfig)
+        setupActionBarWithNavController(findNavController(R.id.navHostMain), appbarconfigs)
         findViewById<BottomNavigationView>(R.id.bottomNavigationView).apply {
             setupWithNavController(findNavController(R.id.navHostMain))
         }
