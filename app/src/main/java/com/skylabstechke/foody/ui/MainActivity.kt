@@ -15,13 +15,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 //bottom configs
-        val appbarconfigs = AppBarConfiguration(setOf(
+        val appbarconfig = AppBarConfiguration(setOf(
                 R.id.recipesFragment,
                 R.id.favoriteRecipesFragment,
                 R.id.foodJokeFragment
         ))
        //set app bar configs
-        setupActionBarWithNavController(findNavController(R.id.navHostMain), appbarconfigs)
+        setupActionBarWithNavController(findNavController(R.id.navHostMain), appbarconfig)
         findViewById<BottomNavigationView>(R.id.bottomNavigationView).apply {
             setupWithNavController(findNavController(R.id.navHostMain))
         }
