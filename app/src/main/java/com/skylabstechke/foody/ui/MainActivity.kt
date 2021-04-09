@@ -20,13 +20,14 @@ class MainActivity : AppCompatActivity() {
                 R.id.favoriteRecipesFragment,
                 R.id.foodJokeFragment
         ))
-       //set app bar configs
+        //set app bar configs
         setupActionBarWithNavController(findNavController(R.id.navHostMain), appbarconfig)
         findViewById<BottomNavigationView>(R.id.bottomNavigationView).apply {
             setupWithNavController(findNavController(R.id.navHostMain))
         }
     }
-//allow navigation
+
+    //allow navigation
     override fun onSupportNavigateUp(): Boolean {
         return findNavController(R.id.navHostMain).navigateUp() || super.onSupportNavigateUp()
     }

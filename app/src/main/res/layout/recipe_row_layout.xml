@@ -58,8 +58,6 @@
                 android:layout_marginTop="6dp"
                 android:ellipsize="end"
                 android:maxLines="3"
-
-
                 android:text=" lor sfjkdsjg vngva
 vadgadgvfdgvjafdghfdgv dfgvdfg
 dgdfjdfjghjdfhjdfhgv dfgjdfghjdfjd"
@@ -74,12 +72,12 @@ dgdfjdfjghjdfhjdfhgv dfgjdfghjdfjd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                app:tint="@color/red"
                 android:layout_marginBottom="36dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2"
                 app:layout_constraintVertical_bias="0.13999999"
                 app:srcCompat="@drawable/ic_heart"
+                app:tint="@color/red"
                 tools:layout_editor_absoluteX="212dp" />
 
             <TextView
@@ -98,20 +96,20 @@ dgdfjdfjghjdfhjdfhgv dfgjdfghjdfjd"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="36dp"
-                app:tint = "@color/yellow"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2"
                 app:layout_constraintVertical_bias="0.17000002"
                 app:srcCompat="@drawable/ic_clock"
+                app:tint="@color/yellow"
                 tools:layout_editor_absoluteX="262dp" />
 
             <TextView
                 android:id="@+id/textView6"
-                android:textColor="@color/yellow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="27dp"
                 android:text="100"
+                android:textColor="@color/yellow"
                 app:layout_constraintEnd_toEndOf="@+id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/textView5"
                 app:layout_constraintTop_toBottomOf="@+id/imageView4" />
