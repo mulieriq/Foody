@@ -4,9 +4,9 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class RemoteDataSource  @Inject constructor(
-    private val foodRecipiesApi: FoodRecipiesApi
+    private val foodRecipesApi: FoodRecipiesApi
 ) {
   suspend  fun getRecipes(queries:Map<String,String>) : Response<FoodRecipe>{
-      return  foodRecipiesApi.getRecipes(queries)
+      return  foodRecipesApi.getRecipes(queries)
     }
 }
