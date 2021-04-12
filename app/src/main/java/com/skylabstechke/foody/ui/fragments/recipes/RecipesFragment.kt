@@ -31,7 +31,7 @@ class RecipesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         mView = inflater.inflate(R.layout.fragment_recipes, container, false)
 
