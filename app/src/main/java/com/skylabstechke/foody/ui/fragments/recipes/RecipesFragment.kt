@@ -10,9 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.skylabstechke.foody.R
 import com.skylabstechke.foody.adapters.RecipesRecyclerViewAdapter
-import com.skylabstechke.foody.utilis.Constants.Companion.API_KEY
 import com.skylabstechke.foody.utilis.NetworkResult
 import com.skylabstechke.foody.viewmodels.MainViewModel
+import com.skylabstechke.foody.viewmodels.RecipesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_recipes.view.*
 
@@ -20,8 +20,13 @@ import kotlinx.android.synthetic.main.fragment_recipes.view.*
 class RecipesFragment : Fragment() {
     private val mAdapter by lazy { RecipesRecyclerViewAdapter() }
     private lateinit var mainViewModel: MainViewModel
-
+    private lateinit var recipesViewModel: RecipesViewModel
     private lateinit var mView: View
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        recipesViewModel = ViewModelProvider(requireActivity()).get(RecipesViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +34,7 @@ class RecipesFragment : Fragment() {
     ): View? {
 
         mView = inflater.inflate(R.layout.fragment_recipes, container, false)
-        mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+
         setupRecyclerView()
         requestApiData()
         return mView
@@ -52,7 +57,7 @@ class RecipesFragment : Fragment() {
     }
 
     private fun requestApiData() {
-        mainViewModel.getRecipes(applyQueries())
+        mainViewModel.getRecipes(recipesViewModel.applyQueries())
         mainViewModel.recipesResponse.observe(viewLifecycleOwner, { response ->
             when (response) {
                 is NetworkResult.Success -> {
