@@ -1,4 +1,4 @@
-package com.skylabstechke.foody.data.network
+package com.skylabstechke.foody.data
 
 import com.skylabstechke.foody.models.FoodRecipe
 import retrofit2.Response
