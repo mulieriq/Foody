@@ -9,13 +9,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.skylabstechke.foody.R
 import com.skylabstechke.foody.adapters.RecipesRecyclerViewAdapter
+import com.skylabstechke.foody.utilis.Constants.Companion.API_KEY
 import com.skylabstechke.foody.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_recipes.view.*
 
 
 class RecipesFragment : Fragment() {
     private val mAdapter by lazy { RecipesRecyclerViewAdapter() }
-    private lateinit var mainViewModel:MainViewModel
+    private lateinit var mainViewModel: MainViewModel
 
     private lateinit var mView: View
 
@@ -46,5 +47,17 @@ class RecipesFragment : Fragment() {
         showShimmerEffect()
     }
 
-    private fun requestApiData(){}
+    private fun requestApiData() {
+        mainViewModel.getRecipes()
+    }
+
+    private fun applyQueries(): HashMap<String, String> {
+        val queries: HashMap<String, String> = HashMap()
+        queries["number"] = "50"
+        queries["apiKey"] = API_KEY
+        queries["type"] = "snack"
+        queries["diet"] = "vegan"
+        queries["addRecipeInformation"] = "true"
+        queries["fillIngredients"] = "true"
+    }
 }
