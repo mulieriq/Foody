@@ -1,6 +1,6 @@
 package com.skylabstechke.foody.di
 
-import com.skylabstechke.foody.data.network.FoodRecipiesApi
+import com.skylabstechke.foody.data.network.FoodRecipesApi
 import com.skylabstechke.foody.utilis.Constants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -43,7 +43,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideApiService(retrofit: Retrofit): FoodRecipiesApi {
-        return retrofit.create(FoodRecipiesApi::class.java)
+    fun provideApiService(retrofit: Retrofit): FoodRecipesApi {
+        return retrofit.create(FoodRecipesApi::class.java)
     }
 }
