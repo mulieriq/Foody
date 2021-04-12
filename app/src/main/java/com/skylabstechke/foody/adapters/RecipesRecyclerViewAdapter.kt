@@ -9,7 +9,7 @@ import com.skylabstechke.foody.models.Result
 
 class RecipesRecyclerViewAdapter : RecyclerView.Adapter<RecipesRecyclerViewAdapter.MyViewHolder>() {
 
-    private var recipe = emptyList<com.skylabstechke.foody.models.Result>()
+    private var recipe = emptyList<Result>()
 
     class MyViewHolder(private val binding: RecipeRowLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {

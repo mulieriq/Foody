@@ -13,6 +13,7 @@ class FoodJokeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_food_joke, container, false)
+        val view =  inflater.inflate(R.layout.fragment_food_joke, container, false)
+        return view
     }
 }
