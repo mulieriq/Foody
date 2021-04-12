@@ -2,10 +2,12 @@ package com.skylabstechke.foody.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.skylabstechke.foody.databinding.RecipeRowLayoutBinding
 import com.skylabstechke.foody.models.FoodRecipe
 import com.skylabstechke.foody.models.Result
+import com.skylabstechke.foody.utilis.RecipesDiffUtil
 
 class RecipesRecyclerViewAdapter : RecyclerView.Adapter<RecipesRecyclerViewAdapter.MyViewHolder>() {
 
@@ -42,7 +44,10 @@ class RecipesRecyclerViewAdapter : RecyclerView.Adapter<RecipesRecyclerViewAdapt
     }
 
     fun setData(newData: FoodRecipe) {
+        val recipesDiUtil = RecipesDiffUtil(recipe, newData.results)
+        val diffUtilResult = DiffUtil.calculateDiff(recipesDiUtil)
+        diffUtilResult.dispatchUpdatesTo(this)
         recipe = newData.results
-        notifyDataSetChanged()
+
     }
 }
