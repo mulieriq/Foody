@@ -26,15 +26,14 @@ class MainViewModel @ViewModelInject constructor(
     }
 
     private suspend fun getRecipesSafeCall(queries: Map<String, String>) {
+        recipesResponse.value = NetworkResult.Loading()
         if (hasInternetConnection()) {
 
             try {
                 val response = repository.remoteDs.getRecipes(queries)
                 recipesResponse.value = handleFoodRecipesResponse(response)
-
             } catch (e: Exception) {
                 recipesResponse.value = NetworkResult.Error("Recipes not found.")
-
             }
 
         } else {
