@@ -12,6 +12,7 @@ import com.skylabstechke.foody.data.Repository
 import com.skylabstechke.foody.models.FoodRecipe
 import com.skylabstechke.foody.utilis.NetworkResult
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 class MainViewModel @ViewModelInject constructor(
     private val repository: Repository,
@@ -24,12 +25,39 @@ class MainViewModel @ViewModelInject constructor(
         getRecipesSafeCall(queries)
     }
 
-    private fun getRecipesSafeCall(queries: Map<String, String>) {
+    private suspend fun getRecipesSafeCall(queries: Map<String, String>) {
         if (hasInternetConnection()) {
 
-        }else{
+            try {
+                val response = repository.remoteDs.getRecipes(queries)
+                recipesResponse.value = handleFoodRecipesResponse(response)
+
+            } catch (e: Exception) {
+
+
+            }
+
+        } else {
             recipesResponse.value = NetworkResult.Error("No Internet Connection")
         }
+    }
+
+    private fun handleFoodRecipesResponse(response: Response<FoodRecipe>): NetworkResult<FoodRecipe>? {
+        when {
+            response.message().toString().contains("timeout") -> {
+                return NetworkResult.Error("Timeout")
+            }
+
+            response.code() == 402 -> {
+                return NetworkResult.Error("API key limited.")
+            }
+
+            response.body()!!.results.isNullOrEmpty() -> {
+                return NetworkResult.Error("Recipes not founnd.")
+            }
+
+        }
+
     }
 
     private fun hasInternetConnection(): Boolean {
