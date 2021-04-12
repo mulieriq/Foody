@@ -16,7 +16,6 @@ import retrofit2.Response
 
 class MainViewModel @ViewModelInject constructor(
     private val repository: Repository,
-
     application: Application
 ) : AndroidViewModel(application) {
 

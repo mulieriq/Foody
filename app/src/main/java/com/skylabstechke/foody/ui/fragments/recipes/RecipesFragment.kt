@@ -13,9 +13,10 @@ import com.skylabstechke.foody.adapters.RecipesRecyclerViewAdapter
 import com.skylabstechke.foody.utilis.Constants.Companion.API_KEY
 import com.skylabstechke.foody.utilis.NetworkResult
 import com.skylabstechke.foody.viewmodels.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_recipes.view.*
 
-
+@AndroidEntryPoint
 class RecipesFragment : Fragment() {
     private val mAdapter by lazy { RecipesRecyclerViewAdapter() }
     private lateinit var mainViewModel: MainViewModel
