@@ -1,4 +1,7 @@
 package com.skylabstechke.foody.data
+import javax.inject.Inject
 
-class RemoteDataSource {
+class RemoteDataSource  @Inject constructor(
+    private val foodRecipiesApi: FoodRecipiesApi
+) {
 }
