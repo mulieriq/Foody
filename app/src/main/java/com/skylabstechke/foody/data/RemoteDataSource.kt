@@ -1,4 +1,5 @@
 package com.skylabstechke.foody.data
+import com.skylabstechke.foody.data.network.FoodRecipiesApi
 import com.skylabstechke.foody.models.FoodRecipe
 import retrofit2.Response
 import javax.inject.Inject

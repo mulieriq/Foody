@@ -1,6 +1,6 @@
-package com.skylabstechke.foody.data.network
+package com.skylabstechke.foody.di
 
-import com.skylabstechke.foody.data.FoodRecipiesApi
+import com.skylabstechke.foody.data.network.FoodRecipiesApi
 import com.skylabstechke.foody.utilis.Constants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
