@@ -33,7 +33,7 @@ class MainViewModel @ViewModelInject constructor(
                 recipesResponse.value = handleFoodRecipesResponse(response)
 
             } catch (e: Exception) {
-
+                recipesResponse.value = NetworkResult.Error("Recipes not found.")
 
             }
 
@@ -53,9 +53,16 @@ class MainViewModel @ViewModelInject constructor(
             }
 
             response.body()!!.results.isNullOrEmpty() -> {
-                return NetworkResult.Error("Recipes not founnd.")
+                return NetworkResult.Error("Recipes not found.")
             }
+            response.isSuccessful -> {
+                val foodRecipes = response.body()
+                return NetworkResult.Success(foodRecipes!!)
 
+            }
+            else -> {
+                return NetworkResult.Error(response.message())
+            }
         }
 
     }
