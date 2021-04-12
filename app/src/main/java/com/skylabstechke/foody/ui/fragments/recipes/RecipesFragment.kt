@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.skylabstechke.foody.R
 import com.skylabstechke.foody.adapters.RecipesRecyclerViewAdapter
 import com.skylabstechke.foody.utilis.Constants.Companion.API_KEY
+import com.skylabstechke.foody.utilis.NetworkResult
 import com.skylabstechke.foody.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_recipes.view.*
 
@@ -48,7 +50,26 @@ class RecipesFragment : Fragment() {
     }
 
     private fun requestApiData() {
-        mainViewModel.getRecipes()
+        mainViewModel.getRecipes(applyQueries())
+        mainViewModel.recipesResponse.observe(viewLifecycleOwner, { response ->
+            when (response) {
+                is NetworkResult.Success -> {
+                    hideShimmerEffect()
+                    response.data?.let { mAdapter.setData(it) }
+                }
+                is NetworkResult.Error -> {
+                    hideShimmerEffect()
+                    Toast.makeText(
+                        requireContext(),
+                        response.message.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                is NetworkResult.Loading -> {
+                    showShimmerEffect()
+                }
+            }
+        })
     }
 
     private fun applyQueries(): HashMap<String, String> {
@@ -59,5 +80,7 @@ class RecipesFragment : Fragment() {
         queries["diet"] = "vegan"
         queries["addRecipeInformation"] = "true"
         queries["fillIngredients"] = "true"
+
+        return queries
     }
 }
