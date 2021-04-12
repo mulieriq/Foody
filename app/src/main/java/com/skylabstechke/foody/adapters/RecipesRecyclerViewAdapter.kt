@@ -2,9 +2,11 @@ package com.skylabstechke.foody.adapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.skylabstechke.foody.databinding.RecipeRowLayoutBinding
 
 class RecipesRecyclerViewAdapter : RecyclerView.Adapter<RecipesRecyclerViewAdapter.MyViewHolder>() {
-    class MyViewHolder:RecyclerView.ViewHolder() {
+    class MyViewHolder(private val binding: RecipeRowLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
     }
 
