@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.skylabstechke.foody.R
 import com.skylabstechke.foody.adapters.RecipesRecyclerViewAdapter
 import com.skylabstechke.foody.utilis.NetworkResult
+import com.skylabstechke.foody.utilis.observeOnce
 import com.skylabstechke.foody.viewmodels.MainViewModel
 import com.skylabstechke.foody.viewmodels.RecipesViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,7 +46,7 @@ class RecipesFragment : Fragment() {
 
     private fun loadFromCache() {
         lifecycleScope.launch {
-            mainViewModel.readRecipes.observe(viewLifecycleOwner, { database ->
+            mainViewModel.readRecipes.observeOnce(viewLifecycleOwner, { database ->
                 if (database.isNotEmpty()) {
                     mAdapter.setData(database[0].foodRecipe)
                     hideShimmerEffect()
