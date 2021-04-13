@@ -11,9 +11,7 @@ import com.skylabstechke.foody.data.room.RecipesEntity
 import com.skylabstechke.foody.models.FoodRecipe
 import com.skylabstechke.foody.utilis.NetworkResult
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
 import retrofit2.Response
 
 class MainViewModel @ViewModelInject constructor(
@@ -25,9 +23,11 @@ class MainViewModel @ViewModelInject constructor(
     /**ROOM*/
     val readRecipes: LiveData<List<RecipesEntity>> = repository.localDs.readDatabase().asLiveData()
 
-    fun insertRecipes(recipesEntity: RecipesEntity) = viewModelScope.launch(Dispatchers.IO) {
-        repository.localDs.insertRecipes(recipesEntity)
-    }
+    private fun insertRecipes(recipesEntity: RecipesEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.localDs.insertRecipes(recipesEntity)
+        }
+
     /**RETROFIT*/
 
     var recipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
@@ -45,6 +45,11 @@ class MainViewModel @ViewModelInject constructor(
                 //offline cache
 
                 val foodRecipe = recipesResponse.value!!.data
+
+                if (foodRecipe != null) {
+                    offlineCacheRecipe(foodRecipe)
+                }
+
             } catch (e: Exception) {
                 recipesResponse.value = NetworkResult.Error("Recipes not found.")
             }
@@ -52,6 +57,12 @@ class MainViewModel @ViewModelInject constructor(
         } else {
             recipesResponse.value = NetworkResult.Error("No Internet Connection")
         }
+    }
+
+    private fun offlineCacheRecipe(foodRecipe: FoodRecipe) {
+        val recipesEntity = RecipesEntity(foodRecipe)
+        insertRecipes(recipesEntity)
+
     }
 
     private fun handleFoodRecipesResponse(response: Response<FoodRecipe>): NetworkResult<FoodRecipe>? {
