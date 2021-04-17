@@ -1,4 +1,4 @@
 package com.skylabstechke.foody.bindingadapters
 
-class FragmentRecipesBinding {
+class FragmentRecipesBindingAdapter {
 }
