@@ -49,6 +49,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:alpha="0.5"
+            readApiResponse="@{mainviewmodel.recipesResponse}"
+            readDatabase="@{mainviewmodel.readRecipes}"
             android:visibility="invisible"
             android:src="@drawable/ic_sad"
             app:layout_constraintBottom_toBottomOf="parent"
