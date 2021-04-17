@@ -1,4 +1,4 @@
-package com.skylabstechke.foody.utilis
+package com.skylabstechke.foody.utils
 
 sealed class NetworkResult<T>(
     val data: T? = null,

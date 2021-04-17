@@ -1,7 +1,7 @@
 package com.skylabstechke.foody.di
 
 import com.skylabstechke.foody.data.network.FoodRecipesApi
-import com.skylabstechke.foody.utilis.Constants.Companion.BASE_URL
+import com.skylabstechke.foody.utils.Constants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

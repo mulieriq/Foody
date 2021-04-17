@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.skylabstechke.foody.databinding.RecipeRowLayoutBinding
 import com.skylabstechke.foody.models.FoodRecipe
 import com.skylabstechke.foody.models.Result
-import com.skylabstechke.foody.utilis.RecipesDiffUtil
+import com.skylabstechke.foody.utils.RecipesDiffUtil
 
 class RecipesRecyclerViewAdapter : RecyclerView.Adapter<RecipesRecyclerViewAdapter.MyViewHolder>() {
 

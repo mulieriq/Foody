@@ -11,8 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.skylabstechke.foody.R
 import com.skylabstechke.foody.adapters.RecipesRecyclerViewAdapter
-import com.skylabstechke.foody.utilis.NetworkResult
-import com.skylabstechke.foody.utilis.observeOnce
+import com.skylabstechke.foody.utils.NetworkResult
+import com.skylabstechke.foody.utils.observeOnce
 import com.skylabstechke.foody.viewmodels.MainViewModel
 import com.skylabstechke.foody.viewmodels.RecipesViewModel
 import dagger.hilt.android.AndroidEntryPoint

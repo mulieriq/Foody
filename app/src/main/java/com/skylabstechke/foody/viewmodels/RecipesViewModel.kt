@@ -2,13 +2,13 @@ package com.skylabstechke.foody.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.skylabstechke.foody.utilis.Constants.Companion.API_KEY
-import com.skylabstechke.foody.utilis.Constants.Companion.QUERY_ADD_RECIPE_INFO
-import com.skylabstechke.foody.utilis.Constants.Companion.QUERY_API_KEY
-import com.skylabstechke.foody.utilis.Constants.Companion.QUERY_DIET
-import com.skylabstechke.foody.utilis.Constants.Companion.QUERY_FILL_INGREDIENTS
-import com.skylabstechke.foody.utilis.Constants.Companion.QUERY_NUMBER
-import com.skylabstechke.foody.utilis.Constants.Companion.QUERY_TYPE
+import com.skylabstechke.foody.utils.Constants.Companion.API_KEY
+import com.skylabstechke.foody.utils.Constants.Companion.QUERY_ADD_RECIPE_INFO
+import com.skylabstechke.foody.utils.Constants.Companion.QUERY_API_KEY
+import com.skylabstechke.foody.utils.Constants.Companion.QUERY_DIET
+import com.skylabstechke.foody.utils.Constants.Companion.QUERY_FILL_INGREDIENTS
+import com.skylabstechke.foody.utils.Constants.Companion.QUERY_NUMBER
+import com.skylabstechke.foody.utils.Constants.Companion.QUERY_TYPE
 
 
 class RecipesViewModel(application: Application) : AndroidViewModel(application) {

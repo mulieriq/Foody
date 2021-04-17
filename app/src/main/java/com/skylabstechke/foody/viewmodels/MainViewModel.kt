@@ -9,7 +9,7 @@ import androidx.lifecycle.*
 import com.skylabstechke.foody.data.Repository
 import com.skylabstechke.foody.data.room.RecipesEntity
 import com.skylabstechke.foody.models.FoodRecipe
-import com.skylabstechke.foody.utilis.NetworkResult
+import com.skylabstechke.foody.utils.NetworkResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response

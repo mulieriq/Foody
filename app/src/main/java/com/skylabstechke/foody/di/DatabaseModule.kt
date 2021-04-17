@@ -3,7 +3,7 @@ package com.skylabstechke.foody.di
 import android.content.Context
 import androidx.room.Room
 import com.skylabstechke.foody.data.room.RecipesDatabase
-import com.skylabstechke.foody.utilis.Constants.Companion.DATABASE_NAME
+import com.skylabstechke.foody.utils.Constants.Companion.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

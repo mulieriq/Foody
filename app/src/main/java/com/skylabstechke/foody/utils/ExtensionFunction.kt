@@ -1,4 +1,4 @@
-package com.skylabstechke.foody.utilis
+package com.skylabstechke.foody.utils
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
