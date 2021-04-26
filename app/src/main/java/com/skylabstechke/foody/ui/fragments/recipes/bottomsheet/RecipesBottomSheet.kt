@@ -72,6 +72,11 @@ class BottomSheet : BottomSheetDialogFragment() {
 
     private fun updateChip(chipId: Int, group: ChipGroup?) {
 
+        if (chipId != 0) {
+            group?.findViewById<Chip>(chipId)?.isCheckable = true
+        }
+
+
     }
 
 
