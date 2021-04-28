@@ -43,13 +43,14 @@
                 app:selectionRequired="true"
                 app:singleLine="true"
                 app:singleSelection="true"
+                app:checkedChip="@id/main_course_chip"
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/main_course_chip"
                     android:layout_width="wrap_content"
                     android:text="Main Course"
-                    android:textColor="@color/black"
+                    style="@style/customeChipStyle"
                     android:layout_height="wrap_content" />
                 <com.google.android.material.chip.Chip
                     android:id="@+id/side_dish_chip"
