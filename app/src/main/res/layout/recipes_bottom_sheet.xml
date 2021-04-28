@@ -24,7 +24,7 @@
     <HorizontalScrollView
         android:id="@+id/scrollview_mealType"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
@@ -45,6 +45,12 @@
                 app:singleSelection="true"
                 android:layout_height="wrap_content">
 
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/main_course_chip"
+                    android:layout_width="wrap_content"
+                    android:text="Main Course"
+                    android:textColor="@color/black"
+                    android:layout_height="wrap_content" />
             </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
     </HorizontalScrollView>
