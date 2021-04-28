@@ -14,7 +14,7 @@ class BottomSheet : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_bottom_sheet, container, false)
+        return inflater.inflate(R.layout.recipes_bottom_sheet, container, false)
     }
 
 
