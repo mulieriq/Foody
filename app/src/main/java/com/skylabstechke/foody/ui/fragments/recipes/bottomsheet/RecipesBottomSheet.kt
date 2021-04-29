@@ -67,8 +67,8 @@ class BottomSheet : BottomSheetDialogFragment() {
 
         view.mealDietApplyButton.setOnClickListener {
             rView.saveMealAndDietType(mealTypeChip, mealTypeChipId, dietTypeChip, dietTypeChipId)
-            val action = R.id.action_bottomSheet_to_recipesFragment()
-            findNavController().navigate()
+            val action = BottomSheetDirections.actionBottomSheetToRecipesFragment(true)
+            findNavController().navigate(action)
         }
         return view;
     }
