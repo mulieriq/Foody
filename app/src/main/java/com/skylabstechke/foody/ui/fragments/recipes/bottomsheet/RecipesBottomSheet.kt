@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -66,6 +67,8 @@ class BottomSheet : BottomSheetDialogFragment() {
 
         view.mealDietApplyButton.setOnClickListener {
             rView.saveMealAndDietType(mealTypeChip, mealTypeChipId, dietTypeChip, dietTypeChipId)
+            val action = R.id.action_bottomSheet_to_recipesFragment()
+            findNavController().navigate()
         }
         return view;
     }
