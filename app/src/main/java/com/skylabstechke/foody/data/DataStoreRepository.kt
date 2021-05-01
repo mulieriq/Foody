@@ -8,28 +8,39 @@ import androidx.datastore.preferences.createDataStore
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class DataStoreRepository @Inject constructor(@ApplicationContext private  val context: Context) {
+class DataStoreRepository @Inject constructor(@ApplicationContext private val context: Context) {
 
-    private object PreferenceKey{
+    private object PreferenceKey {
         val selectedMealType = preferencesKey<String>("mealType")
-        val selectedMealTypeId  = preferencesKey<Int>("mealTypeId")
+        val selectedMealTypeId = preferencesKey<Int>("mealTypeId")
 
         val selectedDietType = preferencesKey<String>("dietType")
-        val selectedDietTypeId  = preferencesKey<Int>("dietTypeId")
+        val selectedDietTypeId = preferencesKey<Int>("dietTypeId")
 
 
     }
 
-    private val datastore :DataStore<Preferences> = context.createDataStore(
+    private val datastore: DataStore<Preferences> = context.createDataStore(
         name = "foody_preferences"
     )
+
+    fun saveMealAndDietType(
+        mealType: String,
+        mealTypeId: Int,
+        dietType: String,
+        dietTypeId: Int
+    ) {
+
+
+    }
+
 
 }
 
 data class MealAndDietType(
-val selectedMealType:String,
-val selectedMealTypeId : Int,
-val selectedDietType:String,
-val selectedDietTypeId: Int
+    val selectedMealType: String,
+    val selectedMealTypeId: Int,
+    val selectedDietType: String,
+    val selectedDietTypeId: Int
 
 )
