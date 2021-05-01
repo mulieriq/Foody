@@ -6,6 +6,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import com.skylabstechke.foody.data.DataStoreRepository
 import com.skylabstechke.foody.data.Repository
 import com.skylabstechke.foody.data.room.RecipesEntity
 import com.skylabstechke.foody.models.FoodRecipe
@@ -16,7 +17,8 @@ import retrofit2.Response
 
 class MainViewModel @ViewModelInject constructor(
     private val repository: Repository,
-    application: Application
+    application: Application,
+    private val  dataStoreRepository: DataStoreRepository
 ) : AndroidViewModel(application) {
 
 
