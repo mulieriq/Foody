@@ -50,10 +50,9 @@ class RecipesViewModel @ViewModelInject constructor(
         val queries: HashMap<String, String> = HashMap()
 
         viewModelScope.launch {
-            readMealDietType.collect {value->
+            readMealDietType.collect { value ->
                 mealType = value.selectedMealType
                 dietType = value.selectedDietType
-
             }
         }
         queries[QUERY_NUMBER] = "50"
