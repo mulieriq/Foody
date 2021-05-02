@@ -15,6 +15,7 @@ import com.skylabstechke.foody.utils.Constants.Companion.QUERY_FILL_INGREDIENTS
 import com.skylabstechke.foody.utils.Constants.Companion.QUERY_NUMBER
 import com.skylabstechke.foody.utils.Constants.Companion.QUERY_TYPE
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
@@ -22,6 +23,8 @@ class RecipesViewModel @ViewModelInject constructor(
     application: Application,
     private val dataStoreRepository: DataStoreRepository
 ) : AndroidViewModel(application) {
+    private var mealType = DEFAULT_MEAL_TYPE
+    private var dietType = DEFAULT_DIET_TYPE
 
     private val readMealDietType = dataStoreRepository.readMealAndDietType
 
@@ -45,10 +48,18 @@ class RecipesViewModel @ViewModelInject constructor(
 
     fun applyQueries(): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
+
+        viewModelScope.launch {
+            readMealDietType.collect {value->
+                mealType = value.selectedMealType
+                dietType = value.selectedDietType
+
+            }
+        }
         queries[QUERY_NUMBER] = "50"
         queries[QUERY_API_KEY] = API_KEY
-        queries[QUERY_TYPE] = DEFAULT_MEAL_TYPE
-        queries[QUERY_DIET] = DEFAULT_DIET_TYPE
+        queries[QUERY_TYPE] = mealType
+        queries[QUERY_DIET] = dietType
         queries[QUERY_ADD_RECIPE_INFO] = "true"
         queries[QUERY_FILL_INGREDIENTS] = "true"
 
