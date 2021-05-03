@@ -26,7 +26,7 @@ class RecipesViewModel @ViewModelInject constructor(
     private var mealType = DEFAULT_MEAL_TYPE
     private var dietType = DEFAULT_DIET_TYPE
 
-    private val readMealDietType = dataStoreRepository.readMealAndDietType
+     val readMealDietType = dataStoreRepository.readMealAndDietType
 
     fun saveMealAndDietType(
         mealType: String,
