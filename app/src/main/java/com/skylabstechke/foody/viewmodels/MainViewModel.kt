@@ -56,10 +56,11 @@ class MainViewModel @ViewModelInject constructor(
                 //offline cache
 
                 val foodRecipe = recipesResponse.value!!.data
-
+                Log.d("API",foodRecipe.toString())
                 if (foodRecipe != null) {
                     offlineCacheRecipe(foodRecipe)
                 }
+
 
             } catch (e: Exception) {
                 recipesResponse.value = NetworkResult.Error("Recipes not found.")
@@ -71,6 +72,7 @@ class MainViewModel @ViewModelInject constructor(
     }
 
     private fun offlineCacheRecipe(foodRecipe: FoodRecipe) {
+        Log.d("SAVEME",foodRecipe.toString());
         val recipesEntity = RecipesEntity(foodRecipe)
         insertRecipes(recipesEntity)
 
