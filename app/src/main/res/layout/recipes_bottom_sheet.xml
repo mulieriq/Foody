@@ -57,43 +57,44 @@
                     android:id="@+id/side_dish_chip"
                     android:layout_width="wrap_content"
                     android:text="Side Dish"
-                    android:textColor="@color/black"
+
+                    style="@style/customeChipStyle"
                     android:layout_height="wrap_content" />
                 <com.google.android.material.chip.Chip
                     android:id="@+id/dessert_chip"
                     android:layout_width="wrap_content"
                     android:text="Dessert"
-                    android:textColor="@color/black"
+                    style="@style/customeChipStyle"
                     android:layout_height="wrap_content" />
                 <com.google.android.material.chip.Chip
                     android:id="@+id/appetizer_chip"
                     android:layout_width="wrap_content"
                     android:text="Appetizer"
-                    android:textColor="@color/black"
+                    style="@style/customeChipStyle"
                     android:layout_height="wrap_content" />
                 <com.google.android.material.chip.Chip
                     android:id="@+id/salad_chip"
                     android:layout_width="wrap_content"
                     android:text="Salad"
-                    android:textColor="@color/black"
+                    style="@style/customeChipStyle"
                     android:layout_height="wrap_content" />
                 <com.google.android.material.chip.Chip
                     android:id="@+id/bread_chip"
                     android:layout_width="wrap_content"
                     android:text="Bread"
-                    android:textColor="@color/black"
+                    style="@style/customeChipStyle"
                     android:layout_height="wrap_content" />
                 <com.google.android.material.chip.Chip
                     android:id="@+id/breakast_chip"
                     android:layout_width="wrap_content"
                     android:text="Breakfast"
-                    android:textColor="@color/black"
+                    style="@style/customeChipStyle"
                     android:layout_height="wrap_content" />
                 <com.google.android.material.chip.Chip
                     android:id="@+id/soup_chip"
                     android:layout_width="wrap_content"
                     android:text="Soup"
-                    android:textColor="@color/black"
+                    style="@style/customeChipStyle"
                     android:layout_height="wrap_content" />
                 <com.google.android.material.chip.Chip
                     android:id="@+id/beverage_chip"
@@ -105,32 +106,32 @@
                     android:id="@+id/sauce_chip"
                     android:layout_width="wrap_content"
                     android:text="Sauce"
-                    android:textColor="@color/black"
+                    style="@style/customeChipStyle"
                     android:layout_height="wrap_content" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/marinade_chip"
                     android:layout_width="wrap_content"
                     android:text="Marinade"
-                    android:textColor="@color/black"
+                    style="@style/customeChipStyle"
                     android:layout_height="wrap_content" />
                 <com.google.android.material.chip.Chip
                     android:id="@+id/fingerfood_chip"
                     android:layout_width="wrap_content"
                     android:text="Fingerfood"
-                    android:textColor="@color/black"
+                    style="@style/customeChipStyle"
                     android:layout_height="wrap_content" />
                 <com.google.android.material.chip.Chip
                     android:id="@+id/snack_chip"
                     android:layout_width="wrap_content"
                     android:text="Snack"
-                    android:textColor="@color/black"
+                    style="@style/customeChipStyle"
                     android:layout_height="wrap_content" />
                 <com.google.android.material.chip.Chip
                     android:id="@+id/drink_chip"
                     android:layout_width="wrap_content"
                     android:text="Drink"
-                    android:textColor="@color/black"
+                    style="@style/customeChipStyle"
                     android:layout_height="wrap_content" />
             </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
