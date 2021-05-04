@@ -1,6 +1,7 @@
 package com.skylabstechke.foody.data
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
@@ -30,7 +31,7 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
     }
 
     private val datastore: DataStore<Preferences> = context.createDataStore(
-        name = "foody_preferences"
+        name = "foodsPreferences"
     )
 
     suspend fun saveMealAndDietType(
@@ -39,6 +40,7 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
         dietType: String,
         dietTypeId: Int
     ) {
+        Log.d("SAVING DATA","SAVING DATA")
 
         datastore.edit { preferences ->
             preferences[PreferenceKey.selectedDietType] = dietType

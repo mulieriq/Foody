@@ -1,6 +1,7 @@
 package com.skylabstechke.foody.ui.fragments.recipes
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,6 +58,7 @@ class RecipesFragment : Fragment() {
         lifecycleScope.launch {
             mainViewModel.readRecipes.observeOnce(viewLifecycleOwner, { database ->
                 if (database.isNotEmpty() && !args.applyButtonClicked) {
+                    Log.d("REQUEST DATA ONCE MORE","Requesting DATA FROM CACHE")
                     mAdapter.setData(database[0].foodRecipe)
                     hideShimmerEffect()
                 } else {
@@ -84,10 +86,12 @@ class RecipesFragment : Fragment() {
     }
 
     private fun requestApiData() {
+        Log.d("REQUEST DATA","Requesting DATA")
         mainViewModel.getRecipes(recipesViewModel.applyQueries())
         mainViewModel.recipesResponse.observe(viewLifecycleOwner, { response ->
             when (response) {
                 is NetworkResult.Success -> {
+                    Log.d("REQUEST DATA SUCCESS","Requesting DATA SUCCESS")
                     hideShimmerEffect()
                     response.data?.let { mAdapter.setData(it) }
                 }
