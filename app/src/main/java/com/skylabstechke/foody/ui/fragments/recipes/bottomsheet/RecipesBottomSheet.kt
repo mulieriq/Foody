@@ -1,6 +1,7 @@
 package com.skylabstechke.foody.ui.fragments.recipes.bottomsheet
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,7 +59,8 @@ class BottomSheet : BottomSheetDialogFragment() {
 
             mealTypeChipId = value.selectedMealTypeId
             dietTypeChipId = value.selectedDietTypeId
-
+            Log.d("CHIPS", mealTypeChipId.toString())
+            Log.d("CHIPS", dietTypeChipId.toString())
             updateChip(value.selectedMealTypeId, view.meal_type_chipGroupId)
             updateChip(value.selectedDietTypeId, view.dietTypeChipGroupId)
 
@@ -66,6 +68,10 @@ class BottomSheet : BottomSheetDialogFragment() {
         })
 
         view.mealDietApplyButton.setOnClickListener {
+            Log.d("CHIPS SAVE", dietTypeChipId.toString())
+            Log.d("CHIPS SAVE", dietTypeChip.toString())
+            Log.d("CHIPS SAVE", mealTypeChip.toString())
+            Log.d("CHIPS SAVE", mealTypeChipId.toString())
             rView.saveMealAndDietType(mealTypeChip, mealTypeChipId, dietTypeChip, dietTypeChipId)
             val action = BottomSheetDirections.actionBottomSheetToRecipesFragment(true)
             findNavController().navigate(action)
@@ -74,9 +80,10 @@ class BottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun updateChip(chipId: Int, group: ChipGroup?) {
+        Log.d("CHIPSID",chipId.toString())
 
         if (chipId != 0) {
-            group?.findViewById<Chip>(chipId)?.isCheckable = true
+            group?.findViewById<Chip>(chipId)?.isChecked = true
         }
 
 

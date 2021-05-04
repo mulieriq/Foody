@@ -54,7 +54,9 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
         if (exception is IOException) {
             emit(emptyPreferences())
         } else {
+            Log.d("FLOW", exception.message.toString())
             throw exception
+
         }
 
     }.map { preference ->

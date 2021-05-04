@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.skylabstechke.foody.data.DataStoreRepository
@@ -14,6 +15,7 @@ import com.skylabstechke.foody.utils.NetworkResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import java.util.*
 
 class MainViewModel @ViewModelInject constructor(
     private val repository: Repository,
@@ -27,7 +29,12 @@ class MainViewModel @ViewModelInject constructor(
 
     private fun insertRecipes(recipesEntity: RecipesEntity) =
         viewModelScope.launch(Dispatchers.IO) {
-            repository.localDs.insertRecipes(recipesEntity)
+            try {
+                repository.localDs.insertRecipes(recipesEntity)
+            } catch (e:Exception){
+                Log.d("INSERT",e.toString().toLowerCase(Locale.ROOT))
+            }
+
         }
 
     /**RETROFIT*/

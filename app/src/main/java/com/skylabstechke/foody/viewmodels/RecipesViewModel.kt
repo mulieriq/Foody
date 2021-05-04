@@ -1,6 +1,7 @@
 package com.skylabstechke.foody.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
@@ -36,12 +37,17 @@ class RecipesViewModel @ViewModelInject constructor(
     ) {
 
         viewModelScope.launch(Dispatchers.IO) {
-            dataStoreRepository.saveMealAndDietType(
-                mealType,
-                mealTypeId,
-                dietType,
-                dietTypeId
-            )
+            try {
+                dataStoreRepository.saveMealAndDietType(
+                    mealType,
+                    mealTypeId,
+                    dietType,
+                    dietTypeId
+                )
+            }catch (e:Exception){
+                Log.d("REPOSITORY",e.toString())
+            }
+
         }
 
     }
