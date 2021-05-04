@@ -177,9 +177,61 @@
                     <com.google.android.material.chip.Chip
                         android:id="@+id/glutonfree_chip"
                         android:layout_width="wrap_content"
-                        android:text="Glutonn Free"
-                        android:textColor="@color/black"
+                        android:text="Gluten Free"
+                        style="@style/customeChipStyle"
                         android:layout_height="wrap_content" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/customeChipStyle"
+                    android:id="@+id/ketogenic_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ketogenic"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/customeChipStyle"
+                    android:id="@+id/vegetarian_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vegetarian"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/customeChipStyle"
+                    android:id="@+id/vegan_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vegan"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/customeChipStyle"
+                    android:id="@+id/pescetarian_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pescetarian"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/customeChipStyle"
+                    android:id="@+id/paleo_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paleo"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/customeChipStyle"
+                    android:id="@+id/primal_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Primal"/>
+
+                <com.google.android.material.chip.Chip
+                    style="@style/customeChipStyle"
+                    android:id="@+id/whole30_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Whole30"/>
+
+
+
 
             </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
