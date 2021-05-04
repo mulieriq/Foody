@@ -50,14 +50,14 @@ class RecipesFragment : Fragment() {
         binding.mainviewmodel = mainViewModel
         setupRecyclerView()
         // requestApiData()
-        loadFromCache()
+        loadFromCache(false)
         binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_recipesFragment_to_bottomSheet)
         }
         return binding.root
     }
 
-    private fun loadFromCache() {
+    private fun loadFromCache(error: Boolean) {
         lifecycleScope.launch {
             mainViewModel.readRecipes.observeOnce(viewLifecycleOwner, { database ->
                 if (database.isNotEmpty() && !args.applyButtonClicked) {
@@ -65,7 +65,16 @@ class RecipesFragment : Fragment() {
                     mAdapter.setData(database[0].foodRecipe)
                     hideShimmerEffect()
                 } else {
-                    requestApiData()
+                    when (error) {
+                        true -> {
+                            mAdapter.setData(database[0].foodRecipe)
+                            hideShimmerEffect()
+                        }
+                        else -> {
+                            requestApiData()
+                        }
+                    }
+
                 }
 
             })
@@ -89,9 +98,9 @@ class RecipesFragment : Fragment() {
     }
 
     private fun requestApiData() {
-        mainViewModel.getRecipes(recipesViewModel.applyQueries())
+        val query = mainViewModel.getRecipes(recipesViewModel.applyQueries())
 
-        Log.d("REQUEST DATA", recipesViewModel.applyQueries().toString())
+        Log.d("REQUEST DATA", query.toString())
         mainViewModel.recipesResponse.observe(viewLifecycleOwner, { response ->
             when (response) {
                 is NetworkResult.Success -> {
@@ -101,7 +110,7 @@ class RecipesFragment : Fragment() {
                 }
                 is NetworkResult.Error -> {
                     hideShimmerEffect()
-                    loadFromCache()
+                    loadFromCache(true)
                     Toast.makeText(
                         requireContext(),
                         response.message.toString(),

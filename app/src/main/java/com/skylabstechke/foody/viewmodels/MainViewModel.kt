@@ -31,6 +31,7 @@ class MainViewModel @ViewModelInject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 repository.localDs.insertRecipes(recipesEntity)
+                Log.d("LOCAL","SAVED")
             } catch (e:Exception){
                 Log.d("INSERT",e.toString().toLowerCase(Locale.ROOT))
             }
@@ -48,6 +49,7 @@ class MainViewModel @ViewModelInject constructor(
         recipesResponse.value = NetworkResult.Loading()
         if (hasInternetConnection()) {
             try {
+                Log.d("API","CALLED")
 
                 val response = repository.remoteDs.getRecipes(queries)
                 recipesResponse.value = handleFoodRecipesResponse(response)
