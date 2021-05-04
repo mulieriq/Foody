@@ -40,7 +40,7 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
         dietType: String,
         dietTypeId: Int
     ) {
-        Log.d("SAVING DATA","SAVING DATA")
+        Log.d("SAVING DATA", "SAVING DATA")
 
         datastore.edit { preferences ->
             preferences[PreferenceKey.selectedDietType] = dietType
@@ -65,7 +65,8 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
         val selectedDietType = preference[PreferenceKey.selectedDietType] ?: "gluten free"
         val selectedDieTypeId = preference[PreferenceKey.selectedDietTypeId] ?: 0
 
-
+        Log.d("SELECTED", preference[PreferenceKey.selectedMealType].toString())
+        Log.d("SELECTED", preference[PreferenceKey.selectedDietType].toString())
         MealAndDietType(
             selectedMealType,
             selectedMealTypeId,

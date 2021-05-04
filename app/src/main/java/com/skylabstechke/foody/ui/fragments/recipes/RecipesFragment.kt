@@ -20,7 +20,6 @@ import com.skylabstechke.foody.utils.observeOnce
 import com.skylabstechke.foody.viewmodels.MainViewModel
 import com.skylabstechke.foody.viewmodels.RecipesViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_recipes.view.*
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -29,8 +28,8 @@ class RecipesFragment : Fragment() {
     private val mAdapter by lazy { RecipesRecyclerViewAdapter() }
     private lateinit var mainViewModel: MainViewModel
     private lateinit var recipesViewModel: RecipesViewModel
-    private var _binding : FragmentRecipesBinding? = null
-    private val  binding get() = _binding!!
+    private var _binding: FragmentRecipesBinding? = null
+    private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
@@ -42,7 +41,11 @@ class RecipesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding =  FragmentRecipesBinding.inflate(inflater,container,false) //inflater.inflate(R.layout.fragment_recipes, container, false)
+        _binding = FragmentRecipesBinding.inflate(
+            inflater,
+            container,
+            false
+        ) //inflater.inflate(R.layout.fragment_recipes, container, false)
         binding.lifecycleOwner = this
         binding.mainviewmodel = mainViewModel
         setupRecyclerView()
@@ -58,7 +61,7 @@ class RecipesFragment : Fragment() {
         lifecycleScope.launch {
             mainViewModel.readRecipes.observeOnce(viewLifecycleOwner, { database ->
                 if (database.isNotEmpty() && !args.applyButtonClicked) {
-                    Log.d("REQUEST DATA ONCE MORE","Requesting DATA FROM CACHE")
+                    Log.d("REQUEST DATA ONCE MORE", "Requesting DATA FROM CACHE")
                     mAdapter.setData(database[0].foodRecipe)
                     hideShimmerEffect()
                 } else {
@@ -86,12 +89,13 @@ class RecipesFragment : Fragment() {
     }
 
     private fun requestApiData() {
-        Log.d("REQUEST DATA","Requesting DATA")
         mainViewModel.getRecipes(recipesViewModel.applyQueries())
+
+        Log.d("REQUEST DATA", recipesViewModel.applyQueries().toString())
         mainViewModel.recipesResponse.observe(viewLifecycleOwner, { response ->
             when (response) {
                 is NetworkResult.Success -> {
-                    Log.d("REQUEST DATA SUCCESS","Requesting DATA SUCCESS")
+                    Log.d("REQUEST DATA SUCCESS", "Requesting DATA SUCCESS")
                     hideShimmerEffect()
                     response.data?.let { mAdapter.setData(it) }
                 }
