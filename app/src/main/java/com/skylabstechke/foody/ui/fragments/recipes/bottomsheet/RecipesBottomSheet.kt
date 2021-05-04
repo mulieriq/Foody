@@ -59,10 +59,12 @@ class BottomSheet : BottomSheetDialogFragment() {
 
             mealTypeChipId = value.selectedMealTypeId
             dietTypeChipId = value.selectedDietTypeId
-            Log.d("CHIPS", mealTypeChipId.toString())
-            Log.d("CHIPS", dietTypeChipId.toString())
+            Log.d("CHIPS MEAL", mealTypeChipId.toString())
+            Log.d("CHIPS DIET", dietTypeChipId.toString())
             updateChip(value.selectedMealTypeId, view.meal_type_chipGroupId)
             updateChip(value.selectedDietTypeId, view.dietTypeChipGroupId)
+            Log.d("CHIPS SELECTED meal",value.selectedMealTypeId.toString())
+            Log.d("CHIPS SELECTED diet",value.selectedDietTypeId.toString())
 
 
         })
@@ -83,7 +85,13 @@ class BottomSheet : BottomSheetDialogFragment() {
         Log.d("CHIPSID",chipId.toString())
 
         if (chipId != 0) {
-            group?.findViewById<Chip>(chipId)?.isChecked = true
+            try {
+                group?.findViewById<Chip>(chipId)?.isChecked = true
+            }catch (e:Exception){
+
+                Log.d("UPDATE",e.message.toString())
+            }
+
         }
 
 
