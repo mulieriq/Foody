@@ -61,6 +61,8 @@ class RecipesViewModel @ViewModelInject constructor(
                 dietType = value.selectedDietType
             }
         }
+        Log.d("QUERY " ,mealType)
+        Log.d("QUERY " ,dietType)
         queries[QUERY_NUMBER] = "50"
         queries[QUERY_API_KEY] = API_KEY
         queries[QUERY_TYPE] = mealType
