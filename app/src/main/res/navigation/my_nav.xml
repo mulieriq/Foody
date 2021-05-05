@@ -17,6 +17,9 @@
             android:name="applyButtonClicked"
             app:argType="boolean"
             android:defaultValue="false" />
+        <action
+            android:id="@+id/action_recipesFragment_to_detailsActivity2"
+            app:destination="@id/detailsActivity2" />
     </fragment>
     <fragment
         android:id="@+id/favoriteRecipesFragment"
@@ -37,4 +40,9 @@
             android:id="@+id/action_bottomSheet_to_recipesFragment"
             app:destination="@id/recipesFragment" />
     </dialog>
+    <activity
+        android:id="@+id/detailsActivity2"
+        android:name="com.skylabstechke.foody.ui.activities.DetailsActivity"
+        android:label="activity_details"
+        tools:layout="@layout/activity_details" />
 </navigation>
