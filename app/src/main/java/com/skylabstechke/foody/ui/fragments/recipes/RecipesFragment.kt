@@ -2,9 +2,7 @@ package com.skylabstechke.foody.ui.fragments.recipes
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -42,6 +40,10 @@ class RecipesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
+      setHasOptionsMenu(
+          true
+      )
+
         _binding = FragmentRecipesBinding.inflate(
             inflater,
             container,
@@ -56,6 +58,13 @@ class RecipesFragment : Fragment() {
             findNavController().navigate(R.id.action_recipesFragment_to_bottomSheet)
         }
         return binding.root
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.recipe_fragment_menu,menu)
+
     }
 
     private fun loadFromCache(error: Boolean?) {

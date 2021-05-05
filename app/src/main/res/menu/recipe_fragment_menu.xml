@@ -6,9 +6,7 @@
       android:icon="@drawable/ic_search"
         app:showAsAction="ifRoom"
         android:iconTint="@color/white"
-        android:actionViewClass="androidx.appcompat.widget.SearchView"
-
-
-        tools:targetApi="o" />
+        tools:targetApi="o"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
 
 </menu>
