@@ -3,6 +3,7 @@ package com.skylabstechke.foody.ui.fragments.recipes
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -21,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RecipesFragment : Fragment() {
+class RecipesFragment : Fragment() , SearchView.OnQueryTextListener {
     private val args by navArgs<RecipesFragmentArgs>()
     private val mAdapter by lazy { RecipesRecyclerViewAdapter() }
     private lateinit var mainViewModel: MainViewModel
@@ -65,6 +66,9 @@ class RecipesFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.recipe_fragment_menu, menu)
+        val search = menu.findItem(R.id.menu_search)
+        val searchView:SearchView = search?.actionView as SearchView
+        searchView.isSubmitButtonEnabled = true
 
     }
 
@@ -151,5 +155,13 @@ class RecipesFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onQueryTextSubmit(p0: String?): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun onQueryTextChange(p0: String?): Boolean {
+        TODO("Not yet implemented")
     }
 }
