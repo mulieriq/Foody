@@ -52,7 +52,7 @@ class RecipesFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.mainviewmodel = mainViewModel
         setupRecyclerView()
-         requestApiData()
+       //requestApiData()
         loadFromCache(false)
         binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_recipesFragment_to_bottomSheet)
@@ -71,7 +71,7 @@ class RecipesFragment : Fragment() {
         lifecycleScope.launch {
             mainViewModel.readRecipes.observeOnce(viewLifecycleOwner, { database ->
                 if (database.isNotEmpty() && !args.applyButtonClicked) {
-                    Log.d("REQUEST DATA ONCE MORE", "Requesting DATA FROM CACHE")
+                    Log.d("REQUEST DATA", "Requesting DATA FROM CACHE")
                     mAdapter.setData(database[0].foodRecipe)
                     hideShimmerEffect()
                 } else {
@@ -81,10 +81,10 @@ class RecipesFragment : Fragment() {
                             mAdapter.setData(database[0].foodRecipe)
                             hideShimmerEffect()
                         }
-                        false->{Log.d("NO LOADING","LOAD FROM CACE")}
-                        else -> {
-                            requestApiData()
-                        }
+                        false->  {
+                        requestApiData()
+                    }
+
                     }
 
                 }
