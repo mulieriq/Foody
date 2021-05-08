@@ -3,7 +3,6 @@ package com.skylabstechke.foody.ui.fragments.recipes
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -29,10 +28,12 @@ class RecipesFragment : Fragment() {
     private lateinit var recipesViewModel: RecipesViewModel
     private var _binding: FragmentRecipesBinding? = null
     private val binding get() = _binding!!
+    private var error: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         recipesViewModel = ViewModelProvider(requireActivity()).get(RecipesViewModel::class.java)
+
     }
 
     override fun onCreateView(
@@ -40,9 +41,9 @@ class RecipesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-      setHasOptionsMenu(
-          true
-      )
+        setHasOptionsMenu(
+            true
+        )
 
         _binding = FragmentRecipesBinding.inflate(
             inflater,
@@ -52,8 +53,8 @@ class RecipesFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.mainviewmodel = mainViewModel
         setupRecyclerView()
-       //requestApiData()
-        loadFromCache(false)
+          requestApiData()
+      //  loadFromCache()
         binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_recipesFragment_to_bottomSheet)
         }
@@ -63,31 +64,41 @@ class RecipesFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.recipe_fragment_menu,menu)
+        inflater.inflate(R.menu.recipe_fragment_menu, menu)
 
     }
 
-    private fun loadFromCache(error: Boolean?) {
+    private fun loadFromCache() {
         lifecycleScope.launch {
             mainViewModel.readRecipes.observeOnce(viewLifecycleOwner, { database ->
-                if (database.isNotEmpty() && !args.applyButtonClicked) {
-                    Log.d("REQUEST DATA", "Requesting DATA FROM CACHE")
+                if (database.isNotEmpty() && !args.applyButtonClicked) { //checks if the database if empty and if the bn returns true
+                    Log.d("DATA FROM CACHE", error.toString())
+                    Log.d("ERROR", error.toString())
                     mAdapter.setData(database[0].foodRecipe)
                     hideShimmerEffect()
                 } else {
-                    Log.d("BUG " ,error.toString())
-                    when (error) {
-                        true -> {
-                            mAdapter.setData(database[0].foodRecipe)
-                            hideShimmerEffect()
-                        }
-                        false->  {
+                    if (error) {
+                        mAdapter.setData(database[0].foodRecipe)
+                        hideShimmerEffect()
+                    } else {
+                        Log.d("DATA REQUEST", args.applyButtonClicked.toString())
                         requestApiData()
                     }
-
-                    }
-
                 }
+//                else {
+//                    Log.d("BUG " ,error.toString())
+//                    when (error) {
+//                        true -> {
+//                            mAdapter.setData(database[0].foodRecipe)
+//                            hideShimmerEffect()
+//                        }
+//                        //false->{Log.d("NO LOADING","LOAD FROM CACE")}
+//                        false -> {
+//                            requestApiData()
+//                        }
+//                    }
+//
+//                }
 
             })
         }
@@ -122,7 +133,8 @@ class RecipesFragment : Fragment() {
                 }
                 is NetworkResult.Error -> {
                     hideShimmerEffect()
-                    loadFromCache(true)
+                    error = true
+                    loadFromCache()
                     Toast.makeText(
                         requireContext(),
                         response.message.toString(),
