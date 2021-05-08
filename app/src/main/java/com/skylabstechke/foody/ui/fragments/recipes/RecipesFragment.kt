@@ -3,8 +3,9 @@ package com.skylabstechke.foody.ui.fragments.recipes
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.SearchView
+
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -69,6 +70,7 @@ class RecipesFragment : Fragment() , SearchView.OnQueryTextListener {
         val search = menu.findItem(R.id.menu_search)
         val searchView:SearchView = search?.actionView as SearchView
         searchView.isSubmitButtonEnabled = true
+        searchView.setOnQueryTextListener(this)
 
     }
 
