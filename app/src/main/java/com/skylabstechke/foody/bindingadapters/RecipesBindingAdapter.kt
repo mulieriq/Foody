@@ -1,15 +1,39 @@
 package com.skylabstechke.foody.bindingadapters
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
+import androidx.navigation.findNavController
 import com.skylabstechke.foody.data.room.RecipesEntity
 import com.skylabstechke.foody.models.FoodRecipe
+import com.skylabstechke.foody.models.Result
+import com.skylabstechke.foody.ui.fragments.recipes.RecipesFragmentDirections
 import com.skylabstechke.foody.utils.NetworkResult
 
 class RecipesBindingAdapter {
     companion object {
+
+        @BindingAdapter("onRecipeClickListener")
+        @JvmStatic
+        fun onRecipeClickListener(recipeRowLayout: ConstraintLayout, result: Result) {
+
+            recipeRowLayout.setOnClickListener {
+                try {
+
+                    val action =
+                        RecipesFragmentDirections.actionRecipesFragmentToDetailsActivity2(result)
+                    recipeRowLayout.findNavController().navigate(action)
+
+                } catch (e: Exception) {
+                    Log.d("onRecipeClickListener", e.toString())
+                }
+            }
+
+        }
+
 
         @BindingAdapter("readApiResponse", "readDatabase", requireAll = true)
         @JvmStatic
