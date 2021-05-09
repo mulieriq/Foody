@@ -198,12 +198,10 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
             searchApiData(query)
         }
         return true
-
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
         return true
     }
-
 
 }
