@@ -19,6 +19,8 @@ class Constants {
         //DEFAULT DATA
         const val DEFAULT_MEAL_TYPE = "main course"
         const val DEFAULT_DIET_TYPE = " gulten free"
+        //Search
+        const val QUERY_SEARCH = "query"
 
     }
 }

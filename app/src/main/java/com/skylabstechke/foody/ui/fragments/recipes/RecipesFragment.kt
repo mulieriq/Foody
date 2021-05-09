@@ -23,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RecipesFragment : Fragment() ,SearchView.OnQueryTextListener{
+class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
     private val args by navArgs<RecipesFragmentArgs>()
     private val mAdapter by lazy { RecipesRecyclerViewAdapter() }
     private lateinit var mainViewModel: MainViewModel
@@ -157,18 +157,46 @@ class RecipesFragment : Fragment() ,SearchView.OnQueryTextListener{
         })
     }
 
-     fun searchApi(){
-         val queries: HashMap<String, String> = HashMap()
-         queries["one"] = "One"
-         val searchQuery = mainViewModel.searchRecipes(queries);
+    fun searchApiData(searchQuery: String) {
+        showShimmerEffect()
+        mainViewModel.searchRecipes(recipesViewModel.searchQueries(searchQuery))
+        mainViewModel.searchResponse.observe(viewLifecycleOwner, { response ->
+            when (response) {
+                is NetworkResult.Loading -> {
+                    showShimmerEffect()
 
-     }
+                }
+                is NetworkResult.Error -> {
+                    hideShimmerEffect()
+                    error = true
+                    Toast.makeText(
+                        requireContext(),
+                        response.message.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                is NetworkResult.Success -> {
+                    hideShimmerEffect()
+                    response.data?.let {
+                        mAdapter.setData(it)
+                    }
+                }
+
+            }
+
+        })
+
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
+        if (query != null) {
+            searchApiData(query)
+        }
         return true
 
     }
