@@ -23,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RecipesFragment : Fragment() {
+class RecipesFragment : Fragment() ,SearchView.OnQueryTextListener{
     private val args by navArgs<RecipesFragmentArgs>()
     private val mAdapter by lazy { RecipesRecyclerViewAdapter() }
     private lateinit var mainViewModel: MainViewModel
@@ -159,6 +159,15 @@ class RecipesFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        return true
+
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        return true
     }
 
 
