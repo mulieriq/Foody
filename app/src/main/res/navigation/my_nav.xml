@@ -43,6 +43,10 @@
     <activity
         android:id="@+id/detailsActivity2"
         android:name="com.skylabstechke.foody.ui.activities.DetailsActivity"
-        android:label="activity_details"
-        tools:layout="@layout/activity_details" />
+        android:label="Details"
+        tools:layout="@layout/activity_details" >
+        <argument
+            android:name="result"
+            app:argType="com.skylabstechke.foody.models.Result" />
+    </activity>
 </navigation>
