@@ -23,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RecipesFragment : Fragment() , SearchView.OnQueryTextListener {
+class RecipesFragment : Fragment() {
     private val args by navArgs<RecipesFragmentArgs>()
     private val mAdapter by lazy { RecipesRecyclerViewAdapter() }
     private lateinit var mainViewModel: MainViewModel
@@ -55,8 +55,8 @@ class RecipesFragment : Fragment() , SearchView.OnQueryTextListener {
         binding.lifecycleOwner = this
         binding.mainviewmodel = mainViewModel
         setupRecyclerView()
-          requestApiData()
-      //  loadFromCache()
+        requestApiData()
+        //  loadFromCache()
         binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_recipesFragment_to_bottomSheet)
         }
@@ -68,9 +68,9 @@ class RecipesFragment : Fragment() , SearchView.OnQueryTextListener {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.recipe_fragment_menu, menu)
         val search = menu.findItem(R.id.menu_search)
-        val searchView:SearchView = search?.actionView as SearchView
+        val searchView: SearchView = search?.actionView as SearchView
         searchView.isSubmitButtonEnabled = true
-        searchView.setOnQueryTextListener(this)
+
 
     }
 
@@ -82,8 +82,10 @@ class RecipesFragment : Fragment() , SearchView.OnQueryTextListener {
                     Log.d("ERROR", error.toString())
                     mAdapter.setData(database[0].foodRecipe)
                     hideShimmerEffect()
+                } else if (database.isEmpty() && error) {
+                    hideShimmerEffect()
                 } else {
-                    if (error) {
+                    if (error) { //if  error is true
                         mAdapter.setData(database[0].foodRecipe)
                         hideShimmerEffect()
                     } else {
@@ -159,11 +161,5 @@ class RecipesFragment : Fragment() , SearchView.OnQueryTextListener {
         _binding = null
     }
 
-    override fun onQueryTextSubmit(p0: String?): Boolean {
-        TODO("Not yet implemented")
-    }
 
-    override fun onQueryTextChange(p0: String?): Boolean {
-        TODO("Not yet implemented")
-    }
 }
