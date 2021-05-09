@@ -20,7 +20,7 @@ import java.util.*
 class MainViewModel @ViewModelInject constructor(
     private val repository: Repository,
     application: Application,
-    private val  dataStoreRepository: DataStoreRepository
+    private val dataStoreRepository: DataStoreRepository
 ) : AndroidViewModel(application) {
 
 
@@ -31,9 +31,9 @@ class MainViewModel @ViewModelInject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 repository.localDs.insertRecipes(recipesEntity)
-                Log.d("LOCAL","SAVED")
-            } catch (e:Exception){
-                Log.d("INSERT",e.toString().toLowerCase(Locale.ROOT))
+                Log.d("LOCAL", "SAVED")
+            } catch (e: Exception) {
+                Log.d("INSERT", e.toString().toLowerCase(Locale.ROOT))
             }
 
         }
@@ -45,18 +45,22 @@ class MainViewModel @ViewModelInject constructor(
         getRecipesSafeCall(queries)
     }
 
+    fun searchRecipes(queries: Map<String, String>): String {
+        return queries.toString()
+    }
+
     private suspend fun getRecipesSafeCall(queries: Map<String, String>) {
         recipesResponse.value = NetworkResult.Loading()
         if (hasInternetConnection()) {
             try {
-                Log.d("API","CALLED")
+                Log.d("API", "CALLED")
 
                 val response = repository.remoteDs.getRecipes(queries)
                 recipesResponse.value = handleFoodRecipesResponse(response)
                 //offline cache
 
                 val foodRecipe = recipesResponse.value!!.data
-                Log.d("API",foodRecipe.toString())
+                Log.d("API", foodRecipe.toString())
                 if (foodRecipe != null) {
                     offlineCacheRecipe(foodRecipe)
                 }
@@ -72,7 +76,7 @@ class MainViewModel @ViewModelInject constructor(
     }
 
     private fun offlineCacheRecipe(foodRecipe: FoodRecipe) {
-        Log.d("SAVEME",foodRecipe.toString());
+        Log.d("SAVEME", foodRecipe.toString());
         val recipesEntity = RecipesEntity(foodRecipe)
         insertRecipes(recipesEntity)
 

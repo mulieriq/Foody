@@ -70,6 +70,7 @@ class RecipesFragment : Fragment() ,SearchView.OnQueryTextListener{
         val search = menu.findItem(R.id.menu_search)
         val searchView: SearchView = search?.actionView as SearchView
         searchView.isSubmitButtonEnabled = true
+        searchView.setOnQueryTextListener(this)
 
 
     }
@@ -156,6 +157,12 @@ class RecipesFragment : Fragment() ,SearchView.OnQueryTextListener{
         })
     }
 
+     fun searchApi(){
+         val queries: HashMap<String, String> = HashMap()
+         queries["one"] = "One"
+         val searchQuery = mainViewModel.searchRecipes(queries);
+
+     }
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
