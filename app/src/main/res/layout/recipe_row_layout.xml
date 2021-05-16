@@ -12,6 +12,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        onRecipeClickListener="@{result}"
         android:id="@+id/recipe_row_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,7 +36,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                onRecipeClickListener="@{result}"
+
                 android:layout_height="match_parent">
 
                 <ImageView
