@@ -20,6 +20,7 @@
         <item name="tabIndicator">@color/white</item>
         <item name="tabIndicatorHeight">2dp</item>
         <item name="tabSelectedTextColor">@color/white</item>
+
     </style>
 
     <style name="customTabTextColor" parent="TextAppearance.Design.Tab">

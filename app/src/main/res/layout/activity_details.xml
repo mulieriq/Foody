@@ -26,7 +26,7 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         app:tabTextAppearance="@style/customTabTextColor"
-        style="@style/customTabLayout"
+
         app:layout_scrollFlags="scroll|enterAlways"
         android:layout_height="wrap_content"/>
 
@@ -34,6 +34,7 @@
   </com.google.android.material.appbar.AppBarLayout>
 
   <androidx.viewpager.widget.ViewPager
+      android:background="@color/white"
       android:id="@+id/viewpager"
       android:layout_width="match_parent"
       android:layout_height="0dp"
