@@ -10,6 +10,7 @@ import coil.load
 import com.skylabstechke.foody.R
 import com.skylabstechke.foody.models.Result
 import kotlinx.android.synthetic.main.fragment_overview.view.*
+import org.jsoup.Jsoup
 
 
 class OverviewFragment : Fragment() {
@@ -27,7 +28,11 @@ class OverviewFragment : Fragment() {
         view.overview_title.text = myResult?.title
         view.time.text = myResult?.readyInMinutes.toString()
         view.likes.text = myResult?.aggregateLikes.toString()
-        view.description_text.text = myResult?.summary
+        myResult?.summary.let {
+            val sum = Jsoup.parse(it).toString()
+            view.description_text.text = sum
+        }
+
         when {
             myResult?.vegetarian == true -> {
                 view.veg_image.setColorFilter(
