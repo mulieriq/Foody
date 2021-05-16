@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/image"
         android:layout_width="0dp"
         android:layout_height="250dp"
         android:scaleType="centerCrop"
@@ -22,21 +22,21 @@
         android:background="@drawable/gradient"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+        app:layout_constraintBottom_toBottomOf="@+id/image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView7"
+        app:layout_constraintTop_toTopOf="@+id/image"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="12dp"
         android:text="100"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+        app:layout_constraintBottom_toBottomOf="@+id/image"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
@@ -45,20 +45,20 @@
         android:layout_height="wrap_content"
         app:tint="@color/white"
         android:src="@drawable/ic_clock"
-        app:layout_constraintBottom_toTopOf="@+id/textView8"
-        app:layout_constraintEnd_toEndOf="@+id/textView8"
-        app:layout_constraintStart_toStartOf="@+id/textView8" />
+        app:layout_constraintBottom_toTopOf="@+id/time"
+        app:layout_constraintEnd_toEndOf="@+id/time"
+        app:layout_constraintStart_toStartOf="@+id/time" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/likes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="12dp"
         android:textColor="@color/white"
         android:text="45"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
-        app:layout_constraintEnd_toStartOf="@+id/textView8" />
+        app:layout_constraintBottom_toBottomOf="@+id/image"
+        app:layout_constraintEnd_toStartOf="@+id/time" />
 
     <ImageView
         app:tint="@color/white"
@@ -66,12 +66,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_heart"
-        app:layout_constraintBottom_toTopOf="@+id/textView11"
-        app:layout_constraintEnd_toEndOf="@+id/textView11"
-        app:layout_constraintStart_toStartOf="@+id/textView11" />
+        app:layout_constraintBottom_toTopOf="@+id/likes"
+        app:layout_constraintEnd_toEndOf="@+id/likes"
+        app:layout_constraintStart_toStartOf="@+id/likes" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/overview_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -85,132 +85,132 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+        app:layout_constraintTop_toBottomOf="@+id/image" />
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/veg_image"
         android:layout_width="wrap_content"
         app:tint="@color/darkGray"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:src="@drawable/ic_check_mark"
-        app:layout_constraintStart_toStartOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintStart_toStartOf="@+id/overview_title"
+        app:layout_constraintTop_toBottomOf="@+id/overview_title" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/vegeterian"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Vegeterian"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
-        app:layout_constraintStart_toEndOf="@+id/imageView10"
-        app:layout_constraintTop_toTopOf="@+id/imageView10" />
+        app:layout_constraintBottom_toBottomOf="@+id/veg_image"
+        app:layout_constraintStart_toEndOf="@+id/veg_image"
+        app:layout_constraintTop_toTopOf="@+id/veg_image" />
 
     <ImageView
-        android:id="@+id/imageView11"
+        android:id="@+id/vegan_image"
         android:layout_width="wrap_content"
         app:tint="@color/darkGray"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:src="@drawable/ic_check_mark"
-        app:layout_constraintStart_toStartOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+        app:layout_constraintStart_toStartOf="@+id/veg_image"
+        app:layout_constraintTop_toBottomOf="@+id/veg_image" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/vegan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Vegan"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
-        app:layout_constraintStart_toEndOf="@+id/imageView11"
-        app:layout_constraintTop_toTopOf="@+id/imageView11" />
+        app:layout_constraintBottom_toBottomOf="@+id/vegan_image"
+        app:layout_constraintStart_toEndOf="@+id/vegan_image"
+        app:layout_constraintTop_toTopOf="@+id/vegan_image" />
 
     <ImageView
-        android:id="@+id/imageView13"
+        android:id="@+id/gluten_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         app:tint="@color/darkGray"
         android:src="@drawable/ic_check_mark"
-        app:layout_constraintBottom_toBottomOf="@+id/textView13"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toTopOf="@+id/textView13" />
+        app:layout_constraintBottom_toBottomOf="@+id/vegeterian"
+        app:layout_constraintStart_toEndOf="@+id/vegeterian"
+        app:layout_constraintTop_toTopOf="@+id/vegeterian" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/gluten_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Gluten Free"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView13"
-        app:layout_constraintStart_toEndOf="@+id/imageView13"
-        app:layout_constraintTop_toTopOf="@+id/imageView13" />
+        app:layout_constraintBottom_toBottomOf="@+id/gluten_image"
+        app:layout_constraintStart_toEndOf="@+id/gluten_image"
+        app:layout_constraintTop_toTopOf="@+id/gluten_image" />
 
     <ImageView
-        android:id="@+id/imageView14"
+        android:id="@+id/dairy_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         app:tint="@color/darkGray"
         android:src="@drawable/ic_check_mark"
-        app:layout_constraintEnd_toEndOf="@+id/imageView13"
-        app:layout_constraintStart_toStartOf="@+id/imageView13"
-        app:layout_constraintTop_toBottomOf="@+id/imageView13" />
+        app:layout_constraintEnd_toEndOf="@+id/gluten_image"
+        app:layout_constraintStart_toStartOf="@+id/gluten_image"
+        app:layout_constraintTop_toBottomOf="@+id/gluten_image" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/dairy_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Dairy Free"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView14"
-        app:layout_constraintStart_toEndOf="@+id/imageView14"
-        app:layout_constraintTop_toTopOf="@+id/imageView14" />
+        app:layout_constraintBottom_toBottomOf="@+id/dairy_image"
+        app:layout_constraintStart_toEndOf="@+id/dairy_image"
+        app:layout_constraintTop_toTopOf="@+id/dairy_image" />
 
     <ImageView
-        android:id="@+id/imageView15"
+        android:id="@+id/health_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         app:tint="@color/darkGray"
         android:src="@drawable/ic_check_mark"
-        app:layout_constraintBottom_toBottomOf="@+id/textView15"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
-        app:layout_constraintTop_toTopOf="@+id/textView15" />
+        app:layout_constraintBottom_toBottomOf="@+id/gluten_text"
+        app:layout_constraintStart_toEndOf="@+id/gluten_text"
+        app:layout_constraintTop_toTopOf="@+id/gluten_text" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/health_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Healthy"
 
-        app:layout_constraintBottom_toBottomOf="@+id/imageView15"
-        app:layout_constraintStart_toEndOf="@+id/imageView15"
-        app:layout_constraintTop_toTopOf="@+id/imageView15" />
+        app:layout_constraintBottom_toBottomOf="@+id/health_image"
+        app:layout_constraintStart_toEndOf="@+id/health_image"
+        app:layout_constraintTop_toTopOf="@+id/health_image" />
 
     <ImageView
-        android:id="@+id/imageView16"
+        android:id="@+id/cheap_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         app:tint="@color/darkGray"
         android:src="@drawable/ic_check_mark"
-        app:layout_constraintEnd_toEndOf="@+id/imageView15"
-        app:layout_constraintStart_toStartOf="@+id/imageView15"
-        app:layout_constraintTop_toBottomOf="@+id/imageView15" />
+        app:layout_constraintEnd_toEndOf="@+id/health_image"
+        app:layout_constraintStart_toStartOf="@+id/health_image"
+        app:layout_constraintTop_toBottomOf="@+id/health_image" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/cheap_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Cheap"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView16"
-        app:layout_constraintStart_toEndOf="@+id/imageView16"
-        app:layout_constraintTop_toTopOf="@+id/imageView16" />
+        app:layout_constraintBottom_toBottomOf="@+id/cheap_image"
+        app:layout_constraintStart_toEndOf="@+id/cheap_image"
+        app:layout_constraintTop_toTopOf="@+id/cheap_image" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -221,7 +221,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView11">
+        app:layout_constraintTop_toBottomOf="@+id/vegan_image">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -229,6 +229,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/description_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
