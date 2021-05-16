@@ -213,7 +213,6 @@
         app:layout_constraintTop_toTopOf="@+id/cheap_image" />
 
     <ScrollView
-        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
@@ -233,8 +232,8 @@
                 android:id="@+id/description_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="Description" />
+                android:text="Description"
+                android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
 

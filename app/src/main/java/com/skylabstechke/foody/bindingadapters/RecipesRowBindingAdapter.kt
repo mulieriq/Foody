@@ -12,6 +12,7 @@ import coil.load
 import com.skylabstechke.foody.R
 import com.skylabstechke.foody.models.Result
 import com.skylabstechke.foody.ui.fragments.recipes.RecipesFragmentDirections
+import org.jsoup.Jsoup
 
 class RecipesRowBindingAdapter {
 
@@ -76,5 +77,15 @@ class RecipesRowBindingAdapter {
 
         }
 
+        @BindingAdapter("parseHtml")
+        @JvmStatic
+
+        fun parseHtml(textView: TextView, description: String?) {
+            if (description != null) {
+                val desc = Jsoup.parse(description).text()
+                textView.text = desc
+            }
+
+        }
     }
 }
