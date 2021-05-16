@@ -16,23 +16,7 @@ import com.skylabstechke.foody.utils.NetworkResult
 class RecipesBindingAdapter {
     companion object {
 
-        @BindingAdapter("onRecipeClickListener")
-        @JvmStatic
-        fun onRecipeClickListener(recipeRowLayout: ConstraintLayout, result: Result) {
 
-            recipeRowLayout.setOnClickListener {
-                try {
-
-                    val action =
-                        RecipesFragmentDirections.actionRecipesFragmentToDetailsActivity2(result)
-                    recipeRowLayout.findNavController().navigate(action)
-
-                } catch (e: Exception) {
-                    Log.d("onRecipeClickListener", e.toString())
-                }
-            }
-
-        }
 
 
         @BindingAdapter("readApiResponse", "readDatabase", requireAll = true)
