@@ -13,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 //Root ui
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

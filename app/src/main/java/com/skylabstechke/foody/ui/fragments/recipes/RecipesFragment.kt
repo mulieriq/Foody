@@ -193,6 +193,11 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         _binding = null
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (query != null) {
             searchApiData(query)
