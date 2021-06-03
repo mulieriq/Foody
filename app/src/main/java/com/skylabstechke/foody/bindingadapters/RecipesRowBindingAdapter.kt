@@ -34,7 +34,6 @@ class RecipesRowBindingAdapter {
                     Log.d("onRecipeClickListener", e.toString())
                 }
             }
-
         }
 
 
@@ -73,8 +72,6 @@ class RecipesRowBindingAdapter {
                     }
                 }
             }
-
-
         }
 
         @BindingAdapter("parseHtml")
