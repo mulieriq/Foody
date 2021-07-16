@@ -15,10 +15,6 @@ import com.skylabstechke.foody.utils.NetworkResult
 
 class RecipesBindingAdapter {
     companion object {
-
-
-
-
         @BindingAdapter("readApiResponse", "readDatabase", requireAll = true)
         @JvmStatic
         fun errImageViewVisibility(
@@ -53,8 +49,6 @@ class RecipesBindingAdapter {
             } else if (apiResponse is NetworkResult.Success) {
                 textView.visibility = View.INVISIBLE
             }
-
-
         }
     }
 }

@@ -22,8 +22,6 @@ class MainViewModel @ViewModelInject constructor(
     application: Application,
     private val dataStoreRepository: DataStoreRepository
 ) : AndroidViewModel(application) {
-
-
     /**ROOM*/
     val readRecipes: LiveData<List<RecipesEntity>> = repository.localDs.readDatabase().asLiveData()
 
@@ -104,7 +102,6 @@ class MainViewModel @ViewModelInject constructor(
     }
 
     private fun offlineCacheRecipe(foodRecipe: FoodRecipe) {
-        Log.d("SAVEME", foodRecipe.toString());
         val recipesEntity = RecipesEntity(foodRecipe)
         insertRecipes(recipesEntity)
 

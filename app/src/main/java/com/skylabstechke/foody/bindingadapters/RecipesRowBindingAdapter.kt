@@ -15,10 +15,7 @@ import com.skylabstechke.foody.ui.fragments.recipes.RecipesFragmentDirections
 import org.jsoup.Jsoup
 
 class RecipesRowBindingAdapter {
-
-
     companion object {
-
         @BindingAdapter("onRecipeClickListener")
         @JvmStatic
         fun onRecipeClickListener(recipeRowLayout: ConstraintLayout, result: Result) {
