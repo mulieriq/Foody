@@ -22,8 +22,6 @@ import java.util.*
 class BottomSheet : BottomSheetDialogFragment() {
 
     private lateinit var rView: RecipesViewModel
-
-
     private var mealTypeChip = DEFAULT_MEAL_TYPE
     private var mealTypeChipId = 0
     private var dietTypeChip = DEFAULT_DIET_TYPE
@@ -88,12 +86,10 @@ class BottomSheet : BottomSheetDialogFragment() {
             try {
                 group?.findViewById<Chip>(chipId)?.isChecked = true
             }catch (e:Exception){
-
                 Log.d("UPDATE",e.message.toString())
             }
 
         }
-
 
     }
 

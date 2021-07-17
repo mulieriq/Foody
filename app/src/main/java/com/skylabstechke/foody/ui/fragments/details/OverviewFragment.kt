@@ -28,11 +28,9 @@ class OverviewFragment : Fragment() {
         view.overview_title.text = myResult?.title
         view.time.text = myResult?.readyInMinutes.toString()
         view.likes.text = myResult?.aggregateLikes.toString()
-        myResult?.summary.let {
-            val sum = Jsoup.parse(it).toString()
-            view.description_text.text = sum
+        view.description_text.text = myResult?.summary.let {
+            Jsoup.parse(it).text()
         }
-
         when {
             myResult?.vegetarian == true -> {
                 view.veg_image.setColorFilter(
@@ -99,10 +97,7 @@ class OverviewFragment : Fragment() {
                     )
                 )
             }
-
         }
-
-
         return view
     }
 

@@ -26,7 +26,6 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         app:tabTextAppearance="@style/customTabTextColor"
-
         app:layout_scrollFlags="scroll|enterAlways"
         android:layout_height="wrap_content"/>
 

@@ -24,7 +24,6 @@ class MainViewModel @ViewModelInject constructor(
 ) : AndroidViewModel(application) {
     /**ROOM*/
     val readRecipes: LiveData<List<RecipesEntity>> = repository.localDs.readDatabase().asLiveData()
-
     private fun insertRecipes(recipesEntity: RecipesEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             try {

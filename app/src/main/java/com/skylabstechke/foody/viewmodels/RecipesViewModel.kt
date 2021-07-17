@@ -1,6 +1,6 @@
 package com.skylabstechke.foody.viewmodels
 
-import android.app.Application
+  import android.app.Application
 import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
@@ -77,9 +77,6 @@ class RecipesViewModel @ViewModelInject constructor(
 
     fun searchQueries(query:String): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
-
-
-
         queries[QUERY_NUMBER] = "50"
         queries[QUERY_API_KEY] = API_KEY
         queries[QUERY_SEARCH] = query
