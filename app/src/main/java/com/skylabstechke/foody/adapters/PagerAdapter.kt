@@ -15,7 +15,7 @@ class PagerAdapter(
         return fragments.size
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
+    override fun getPageTitle(position: Int): CharSequence {
         return title[position]
     }
 
