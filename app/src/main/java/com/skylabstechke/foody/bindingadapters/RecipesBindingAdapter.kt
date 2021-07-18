@@ -1,16 +1,11 @@
 package com.skylabstechke.foody.bindingadapters
 
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
-import androidx.navigation.findNavController
 import com.skylabstechke.foody.data.room.RecipesEntity
 import com.skylabstechke.foody.models.FoodRecipe
-import com.skylabstechke.foody.models.Result
-import com.skylabstechke.foody.ui.fragments.recipes.RecipesFragmentDirections
 import com.skylabstechke.foody.utils.NetworkResult
 
 class RecipesBindingAdapter {
@@ -22,7 +17,6 @@ class RecipesBindingAdapter {
             apiResponse: NetworkResult<FoodRecipe>?,
             database: List<RecipesEntity>?
         ) {
-
             if (apiResponse is NetworkResult.Error && database.isNullOrEmpty()) {
                 imageView.visibility = View.VISIBLE
             } else if (apiResponse is NetworkResult.Loading) {
@@ -38,9 +32,7 @@ class RecipesBindingAdapter {
             textView: TextView,
             apiResponse: NetworkResult<FoodRecipe>?,
             database: List<RecipesEntity>?
-
         ) {
-
             if (apiResponse is NetworkResult.Error && database.isNullOrEmpty()) {
                 textView.visibility = View.VISIBLE
                 textView.text = apiResponse.message.toString()

@@ -19,10 +19,8 @@ class RecipesRowBindingAdapter {
         @BindingAdapter("onRecipeClickListener")
         @JvmStatic
         fun onRecipeClickListener(recipeRowLayout: ConstraintLayout, result: Result) {
-
             recipeRowLayout.setOnClickListener {
                 try {
-
                     val action =
                         RecipesFragmentDirections.actionRecipesFragmentToDetailsActivity2(result)
                     recipeRowLayout.findNavController().navigate(action)
@@ -78,7 +76,6 @@ class RecipesRowBindingAdapter {
                 val desc = Jsoup.parse(description).text()
                 textView.text = desc
             }
-
         }
     }
 }

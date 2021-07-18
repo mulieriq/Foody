@@ -35,18 +35,15 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         super.onCreate(savedInstanceState)
         mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         recipesViewModel = ViewModelProvider(requireActivity()).get(RecipesViewModel::class.java)
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         setHasOptionsMenu(
             true
         )
-
         _binding = FragmentRecipesBinding.inflate(
             inflater,
             container,
@@ -70,7 +67,6 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         val searchView: SearchView = search?.actionView as SearchView
         searchView.isSubmitButtonEnabled = true
         searchView.setOnQueryTextListener(this)
-
     }
 
     private fun loadFromCache() {
@@ -97,12 +93,10 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun showShimmerEffect() {
-
         binding.recyclerview.showShimmer()
     }
 
     private fun hideShimmerEffect() {
-
         binding.recyclerview.hideShimmer()
     }
 
@@ -114,7 +108,6 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun requestApiData() {
         val query = mainViewModel.getRecipes(recipesViewModel.applyQueries())
-
         Log.d("REQUEST DATA", query.toString())
         mainViewModel.recipesResponse.observe(viewLifecycleOwner, { response ->
             when (response) {
@@ -147,7 +140,6 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
             when (response) {
                 is NetworkResult.Loading -> {
                     showShimmerEffect()
-
                 }
                 is NetworkResult.Error -> {
                     hideShimmerEffect()
@@ -164,11 +156,8 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
                         mAdapter.setData(it)
                     }
                 }
-
             }
-
         })
-
     }
 
     override fun onDestroy() {
@@ -191,5 +180,4 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onQueryTextChange(newText: String?): Boolean {
         return true
     }
-
 }
