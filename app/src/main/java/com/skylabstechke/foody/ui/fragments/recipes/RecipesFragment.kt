@@ -15,11 +15,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.skylabstechke.foody.R
 import com.skylabstechke.foody.adapters.RecipesRecyclerViewAdapter
 import com.skylabstechke.foody.databinding.FragmentRecipesBinding
+import com.skylabstechke.foody.utils.NetworkConnection
 import com.skylabstechke.foody.utils.NetworkResult
 import com.skylabstechke.foody.utils.observeOnce
 import com.skylabstechke.foody.viewmodels.MainViewModel
 import com.skylabstechke.foody.viewmodels.RecipesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -31,6 +33,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
     private var _binding: FragmentRecipesBinding? = null
     private val binding get() = _binding!!
     private var error: Boolean = false
+    private lateinit var networkListener: NetworkConnection
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
@@ -53,6 +56,15 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.mainviewmodel = mainViewModel
         setupRecyclerView()
         requestApiData()
+        lifecycleScope.launch {
+            networkListener = NetworkConnection()
+            networkListener.checkNetworkAvailability(requireContext()).collect { status ->
+                Log.d("NetworkListener", status.toString())
+            }
+        }
+
+
+
         binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_recipesFragment_to_bottomSheet)
         }
