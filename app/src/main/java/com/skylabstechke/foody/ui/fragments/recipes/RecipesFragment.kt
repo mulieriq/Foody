@@ -56,7 +56,6 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.mainviewmodel = mainViewModel
         setupRecyclerView()
         requestApiData()
-        //  loadFromCache()
         binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_recipesFragment_to_bottomSheet)
         }
@@ -71,7 +70,6 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         val searchView: SearchView = search?.actionView as SearchView
         searchView.isSubmitButtonEnabled = true
         searchView.setOnQueryTextListener(this)
-
 
     }
 
@@ -94,21 +92,6 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
                         requestApiData()
                     }
                 }
-//                else {
-//                    Log.d("BUG " ,error.toString())
-//                    when (error) {
-//                        true -> {
-//                            mAdapter.setData(database[0].foodRecipe)
-//                            hideShimmerEffect()
-//                        }
-//                        //false->{Log.d("NO LOADING","LOAD FROM CACE")}
-//                        false -> {
-//                            requestApiData()
-//                        }
-//                    }
-//
-//                }
-
             })
         }
     }

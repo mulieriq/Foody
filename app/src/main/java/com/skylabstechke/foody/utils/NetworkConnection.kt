@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 class NetworkConnection : ConnectivityManager.NetworkCallback() {
     var isNetworkAvailable = MutableStateFlow(false)
 
-
     fun checkNetworkAvailability(context: Context): MutableStateFlow<Boolean> {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
