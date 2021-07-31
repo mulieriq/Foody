@@ -25,18 +25,18 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        app:tabTextAppearance="@style/customTabTextColor"
-        app:layout_scrollFlags="scroll|enterAlways"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:contentDescription="@android:string/yes"
+        app:layout_scrollFlags="scroll|enterAlways" />
 
 
   </com.google.android.material.appbar.AppBarLayout>
 
   <androidx.viewpager.widget.ViewPager
-      android:background="@color/white"
       android:id="@+id/viewpager"
       android:layout_width="match_parent"
       android:layout_height="0dp"
+      android:contentDescription="@android:string/yes"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"

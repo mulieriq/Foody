@@ -19,9 +19,9 @@ import java.util.*
 
 class MainViewModel @ViewModelInject constructor(
     private val repository: Repository,
-    application: Application,
+
     private val dataStoreRepository: DataStoreRepository
-) : AndroidViewModel(application) {
+) : ViewModel() {
     /**ROOM*/
     val readRecipes: LiveData<List<RecipesEntity>> = repository.localDs.readDatabase().asLiveData()
     private fun insertRecipes(recipesEntity: RecipesEntity) =
@@ -48,54 +48,45 @@ class MainViewModel @ViewModelInject constructor(
 
     private suspend fun searchRecipesSafecall(queries: Map<String, String>) {
         searchResponse.value = NetworkResult.Loading()
-        if (hasInternetConnection()) {
-            Log.d("Search", "Search API")
 
-            if (hasInternetConnection()) {
-                try {
-                    Log.d("API", "CALLED")
+        Log.d("Search", "Search API")
 
-                    val response = repository.remoteDs.searchRecipes(queries)
-                    recipesResponse.value = handleFoodRecipesResponse(response)
 
-                } catch (e: Exception) {
-                    recipesResponse.value = NetworkResult.Error("Recipes not found.")
-                }
+        try {
+            Log.d("API", "CALLED")
 
-            } else {
-                recipesResponse.value = NetworkResult.Error("No Internet Connection")
-            }
+            val response = repository.remoteDs.searchRecipes(queries)
+            recipesResponse.value = handleFoodRecipesResponse(response)
 
-        } else {
-            recipesResponse.value = NetworkResult.Error(message = "No Internet Connection")
+        } catch (e: Exception) {
+            recipesResponse.value = NetworkResult.Error("Recipes not found.")
         }
+
 
     }
 
     private suspend fun getRecipesSafeCall(queries: Map<String, String>) {
         recipesResponse.value = NetworkResult.Loading()
-        if (hasInternetConnection()) {
-            try {
-                Log.d("API", "CALLED")
 
-                val response = repository.remoteDs.getRecipes(queries)
-                recipesResponse.value = handleFoodRecipesResponse(response)
-                //offline cache
+        try {
+            Log.d("API", "CALLED")
 
-                val foodRecipe = recipesResponse.value!!.data
-                Log.d("API", foodRecipe.toString())
-                if (foodRecipe != null) {
-                    offlineCacheRecipe(foodRecipe)
-                }
+            val response = repository.remoteDs.getRecipes(queries)
+            recipesResponse.value = handleFoodRecipesResponse(response)
+            //offline cache
 
-
-            } catch (e: Exception) {
-                recipesResponse.value = NetworkResult.Error("Recipes not found.")
+            val foodRecipe = recipesResponse.value!!.data
+            Log.d("API", foodRecipe.toString())
+            if (foodRecipe != null) {
+                offlineCacheRecipe(foodRecipe)
             }
 
-        } else {
-            recipesResponse.value = NetworkResult.Error("No Internet Connection")
+
+        } catch (e: Exception) {
+            recipesResponse.value = NetworkResult.Error("Recipes not found.")
         }
+
+
     }
 
     private fun offlineCacheRecipe(foodRecipe: FoodRecipe) {
@@ -129,17 +120,4 @@ class MainViewModel @ViewModelInject constructor(
 
     }
 
-    private fun hasInternetConnection(): Boolean {
-        val connectivityManager =
-            getApplication<Application>().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetwork = connectivityManager.activeNetwork ?: return false
-        val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
-
-        return when {
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-            else -> false
-        }
-    }
 }

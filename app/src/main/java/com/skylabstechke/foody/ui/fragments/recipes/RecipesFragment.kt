@@ -60,13 +60,21 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
             networkListener = NetworkConnection()
             networkListener.checkNetworkAvailability(requireContext()).collect { status ->
                 Log.d("NetworkListener", status.toString())
+                recipesViewModel.networkStatus = status
+                recipesViewModel.showNetworkStatus()
             }
         }
 
-
+        recipesViewModel.readBackOnline.observe(viewLifecycleOwner) {
+            recipesViewModel.wentOffline = it
+        }
 
         binding.floatingActionButton.setOnClickListener {
-            findNavController().navigate(R.id.action_recipesFragment_to_bottomSheet)
+            if (recipesViewModel.networkStatus) {
+                findNavController().navigate(R.id.action_recipesFragment_to_bottomSheet)
+            } else {
+                recipesViewModel.showNetworkStatus()
+            }
         }
         return binding.root
     }
@@ -83,7 +91,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun loadFromCache() {
         lifecycleScope.launch {
-            mainViewModel.readRecipes.observeOnce(viewLifecycleOwner, { database ->
+            mainViewModel.readRecipes.observeOnce(viewLifecycleOwner) { database ->
                 if (database.isNotEmpty() && !args.applyButtonClicked) { //checks if the database if empty and if the bn returns true
                     Log.d("DATA FROM CACHE", error.toString())
                     Log.d("ERROR", error.toString())
@@ -100,7 +108,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
                         requestApiData()
                     }
                 }
-            })
+            }
         }
     }
 
@@ -121,7 +129,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun requestApiData() {
         val query = mainViewModel.getRecipes(recipesViewModel.applyQueries())
         Log.d("REQUEST DATA", query.toString())
-        mainViewModel.recipesResponse.observe(viewLifecycleOwner, { response ->
+        mainViewModel.recipesResponse.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is NetworkResult.Success -> {
                     Log.d("REQUEST DATA SUCCESS", "Requesting DATA SUCCESS")
@@ -142,13 +150,13 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
                     showShimmerEffect()
                 }
             }
-        })
+        }
     }
 
     private fun searchApiData(searchQuery: String) {
         showShimmerEffect()
         mainViewModel.searchRecipes(recipesViewModel.searchQueries(searchQuery))
-        mainViewModel.searchResponse.observe(viewLifecycleOwner, { response ->
+        mainViewModel.searchResponse.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is NetworkResult.Loading -> {
                     showShimmerEffect()
@@ -169,7 +177,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
                     }
                 }
             }
-        })
+        }
     }
 
     override fun onDestroy() {

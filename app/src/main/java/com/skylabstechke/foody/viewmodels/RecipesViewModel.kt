@@ -1,9 +1,12 @@
 package com.skylabstechke.foody.viewmodels
 
-  import android.app.Application
+import android.app.Application
+import android.content.Context
 import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.skylabstechke.foody.data.DataStoreRepository
 import com.skylabstechke.foody.utils.Constants.Companion.API_KEY
@@ -16,19 +19,23 @@ import com.skylabstechke.foody.utils.Constants.Companion.QUERY_FILL_INGREDIENTS
 import com.skylabstechke.foody.utils.Constants.Companion.QUERY_NUMBER
 import com.skylabstechke.foody.utils.Constants.Companion.QUERY_SEARCH
 import com.skylabstechke.foody.utils.Constants.Companion.QUERY_TYPE
+import com.skylabstechke.foody.utils.Utils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
 class RecipesViewModel @ViewModelInject constructor(
-    application: Application,
-    private val dataStoreRepository: DataStoreRepository
-) : AndroidViewModel(application) {
+    private val dataStoreRepository: DataStoreRepository,
+    private val utils: Utils
+) : ViewModel() {
     private var mealType = DEFAULT_MEAL_TYPE
     private var dietType = DEFAULT_DIET_TYPE
+    var networkStatus: Boolean = false
+    var wentOffline: Boolean = false
 
-     val readMealDietType = dataStoreRepository.readMealAndDietType
+    val readMealDietType = dataStoreRepository.readMealAndDietType
+    val readBackOnline = dataStoreRepository.readBackOnline.asLiveData()
 
     fun saveMealAndDietType(
         mealType: String,
@@ -45,8 +52,8 @@ class RecipesViewModel @ViewModelInject constructor(
                     dietType,
                     dietTypeId
                 )
-            }catch (e:Exception){
-                Log.d("REPOSITORY",e.toString())
+            } catch (e: Exception) {
+                Log.d("REPOSITORY", e.toString())
             }
 
         }
@@ -62,8 +69,8 @@ class RecipesViewModel @ViewModelInject constructor(
                 dietType = value.selectedDietType
             }
         }
-        Log.d("QUERY" ,mealType)
-        Log.d("QUERY" ,dietType)
+        Log.d("QUERY", mealType)
+        Log.d("QUERY", dietType)
 
         queries[QUERY_NUMBER] = "50"
         queries[QUERY_API_KEY] = API_KEY
@@ -75,7 +82,7 @@ class RecipesViewModel @ViewModelInject constructor(
         return queries
     }
 
-    fun searchQueries(query:String): HashMap<String, String> {
+    fun searchQueries(query: String): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
         queries[QUERY_NUMBER] = "50"
         queries[QUERY_API_KEY] = API_KEY
@@ -86,5 +93,21 @@ class RecipesViewModel @ViewModelInject constructor(
         return queries
     }
 
+    fun showNetworkStatus() {
+        if (!networkStatus) {
+            utils.toast("No internet connection")
+            saveBackOnline(true)
+        }else if (networkStatus){
+            if (wentOffline){
+                utils.toast("We are back Online ")
+                saveBackOnline(false)
+            }
+
+        }
+    }
+
+    private fun saveBackOnline(wentOffline:Boolean)= viewModelScope.launch (Dispatchers.IO){
+        dataStoreRepository.saveBackOnline(wentOffline)
+    }
 
 }
