@@ -32,7 +32,6 @@ class MainViewModel @ViewModelInject constructor(
             } catch (e: Exception) {
                 Log.d("INSERT", e.toString().toLowerCase(Locale.ROOT))
             }
-
         }
 
     /**RETROFIT*/
@@ -58,7 +57,6 @@ class MainViewModel @ViewModelInject constructor(
 
                     val response = repository.remoteDs.searchRecipes(queries)
                     recipesResponse.value = handleFoodRecipesResponse(response)
-
 
                 } catch (e: Exception) {
                     recipesResponse.value = NetworkResult.Error("Recipes not found.")
