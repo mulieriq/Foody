@@ -10,4 +10,9 @@
     <string name="no_internet_connection">No Internet Connection</string>
     <string name="vegan">Vegan</string>
     <string name="_100">100</string>
+    <string name="consistency">Consistency</string>
+    <string name="original">Original</string>
+    <string name="_100_grams">100 Grams</string>
+    <string name="name">Name</string>
+    <string name="imageDescription">image</string>
 </resources>
