@@ -47,10 +47,10 @@ class IngredientsRecyclerViewAdapter :
         holder.itemView.ingredientImage.load(
             IMAGE_BASE_URL + ingredientsLists[position].image
         ) {
-            error(R.drawable.ic_error_placeholder)
+            error( R.drawable.ic_error_placeholder)
             crossfade(600)
+            placeholder(R.drawable.ic_error_placeholder)
         }
-
 
     }
 
