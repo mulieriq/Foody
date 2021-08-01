@@ -5,9 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.skylabstechke.foody.R
 import com.skylabstechke.foody.models.ExtendedIngredient
+import com.skylabstechke.foody.utils.Constants.Companion.IMAGE_BASE_URL
 import com.skylabstechke.foody.utils.RecipesDiffUtil
+import kotlinx.android.synthetic.main.ingredients_row_layout.view.*
 
 class IngredientsRecyclerViewAdapter :
     RecyclerView.Adapter<IngredientsRecyclerViewAdapter.MyViewHolder>() {
@@ -36,6 +39,18 @@ class IngredientsRecyclerViewAdapter :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        holder.itemView.ingredientTitle.text = ingredientsLists[position].name
+        holder.itemView.ingredientAmount.text = ingredientsLists[position].name
+        holder.itemView.ingredientOriginal.text = ingredientsLists[position].name
+        holder.itemView.ingredientConsistency.text = ingredientsLists[position].name
+        holder.itemView.ingredientUnit.text = ingredientsLists[position].name
+        holder.itemView.ingredientImage.load(
+            IMAGE_BASE_URL + ingredientsLists[position].image
+        ) {
+            error(R.drawable.ic_error_placeholder)
+            crossfade(600)
+        }
+
 
     }
 

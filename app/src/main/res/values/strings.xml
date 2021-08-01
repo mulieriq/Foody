@@ -15,4 +15,5 @@
     <string name="_100_grams">100</string>
     <string name="name">Name</string>
     <string name="imageDescription">image</string>
+    <string name="cups">Cups</string>
 </resources>
