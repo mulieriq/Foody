@@ -40,10 +40,10 @@ class IngredientsRecyclerViewAdapter :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.itemView.ingredientTitle.text = ingredientsLists[position].name
-        holder.itemView.ingredientAmount.text = ingredientsLists[position].name
-        holder.itemView.ingredientOriginal.text = ingredientsLists[position].name
-        holder.itemView.ingredientConsistency.text = ingredientsLists[position].name
-        holder.itemView.ingredientUnit.text = ingredientsLists[position].name
+        holder.itemView.ingredientAmount.text = ingredientsLists[position].amount.toString()
+        holder.itemView.ingredientOriginal.text = ingredientsLists[position].original
+        holder.itemView.ingredientConsistency.text = ingredientsLists[position].consistency
+        holder.itemView.ingredientUnit.text = ingredientsLists[position].unit
         holder.itemView.ingredientImage.load(
             IMAGE_BASE_URL + ingredientsLists[position].image
         ) {
