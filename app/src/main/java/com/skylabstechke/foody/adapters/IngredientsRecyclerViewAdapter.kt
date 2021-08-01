@@ -6,11 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.skylabstechke.foody.R
-import com.skylabstechke.foody.models.Result
 import com.skylabstechke.foody.models.ExtendedIngredient
 import com.skylabstechke.foody.utils.RecipesDiffUtil
-import kotlinx.android.synthetic.main.fragment_recipes.view.*
-import kotlinx.android.synthetic.main.placeholder_row.view.*
 
 class IngredientsRecyclerViewAdapter :
     RecyclerView.Adapter<IngredientsRecyclerViewAdapter.MyViewHolder>() {

@@ -16,7 +16,7 @@ data class Result(
     @SerializedName("extendedIngredients")
     val extendedIngredients: @RawValue List<ExtendedIngredient>?,
     @SerializedName("glutenFree")
-    val glutenFree : Boolean?,
+    val glutenFree: Boolean?,
     @SerializedName("id")
     val id: Int?,
     @SerializedName("image")
@@ -37,4 +37,4 @@ data class Result(
     val vegetarian: Boolean?,
     @SerializedName("veryHealthy")
     val veryHealthy: Boolean?,
-    ):Parcelable
+) : Parcelable

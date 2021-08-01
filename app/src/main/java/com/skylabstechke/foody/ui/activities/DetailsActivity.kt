@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.navArgs
-import androidx.navigation.ui.setupWithNavController
 import com.skylabstechke.foody.R
 import com.skylabstechke.foody.adapters.PagerAdapter
 import com.skylabstechke.foody.ui.fragments.details.IngredientsFragment
@@ -45,7 +44,7 @@ class DetailsActivity : AppCompatActivity() {
 
         )
         viewpager.adapter = adapter
-      tabLayout.setupWithViewPager(viewpager)
+        tabLayout.setupWithViewPager(viewpager)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

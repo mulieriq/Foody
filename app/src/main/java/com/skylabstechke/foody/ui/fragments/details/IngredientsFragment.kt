@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.skylabstechke.foody.R
 import com.skylabstechke.foody.adapters.IngredientsRecyclerViewAdapter
 import com.skylabstechke.foody.models.Result
@@ -25,10 +24,10 @@ class IngredientsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_ingredients, container, false)
 
         val args = arguments
-        val Bundle: Result? = args?.getParcelable("recipeBundle")
+        val myBundle: Result? = args?.getParcelable("recipeBundle")
 
         setUpRecyclerView(view)
-        Bundle?.extendedIngredients.let {
+        myBundle?.extendedIngredients.let {
             ingredientsRecyclerViewAdapter.setData(it!!)
         }
         return view
