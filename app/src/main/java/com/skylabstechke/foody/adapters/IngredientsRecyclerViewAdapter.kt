@@ -39,7 +39,7 @@ class IngredientsRecyclerViewAdapter :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.itemView.textView.text = ingredientsLists[position].name
+
     }
 
     override fun getItemCount(): Int {
