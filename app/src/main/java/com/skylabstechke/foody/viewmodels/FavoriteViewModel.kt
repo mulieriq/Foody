@@ -1,5 +1,6 @@
 package com.skylabstechke.foody.viewmodels
 
+import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -25,12 +26,31 @@ class FavoriteViewModel @ViewModelInject constructor(
         )
         safeInsertFav(favoriteEntity)
     }
-    fun
+
+    fun deleteFav(result: Result) {
+        val favoriteEntity = FavoriteEntity(
+            result
+        )
+        safeDeleteFav(favoriteEntity)
+    }
+
+    private fun safeDeleteFav(favoriteEntity: FavoriteEntity) = viewModelScope.launch {
+        try {
+            repository.localDs.deleteFav(favoriteEntity)
+            utils.toast("Deleted Successfully")
+
+        } catch (e: Exception) {
+            Log.d("DELETE ERROR", e.toString())
+        }
+
+    }
+
 
     private fun safeInsertFav(favoriteEntity: FavoriteEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 repository.localDs.insertFav(favoriteEntity)
+                utils.toast("Saved Successfully")
             } catch (e: Exception) {
                 utils.toast(e.toString())
             }
