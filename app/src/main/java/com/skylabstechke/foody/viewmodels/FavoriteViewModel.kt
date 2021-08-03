@@ -34,6 +34,20 @@ class FavoriteViewModel @ViewModelInject constructor(
         safeDeleteFav(favoriteEntity)
     }
 
+    fun deleteAllFav() {
+        safeDeleteAllFav()
+    }
+
+    private fun safeDeleteAllFav() = viewModelScope.launch {
+        try {
+            repository.localDs.deleteAllFav()
+            utils.toast("Deleted Successfully")
+
+        } catch (e: Exception) {
+            Log.d("DELETE ERROR", e.toString())
+        }
+    }
+
     private fun safeDeleteFav(favoriteEntity: FavoriteEntity) = viewModelScope.launch {
         try {
             repository.localDs.deleteFav(favoriteEntity)

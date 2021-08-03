@@ -30,7 +30,7 @@ class LocalDataSource @Inject constructor(
         return recipesDao.deleteFavorite(favoriteEntity)
     }
 
-    suspend fun deleteAllFav(favoriteEntity: FavoriteEntity) {
+    suspend fun deleteAllFav() {
         return recipesDao.deleteAllFav()
     }
 }
