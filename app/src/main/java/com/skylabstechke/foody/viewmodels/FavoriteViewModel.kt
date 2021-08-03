@@ -1,8 +1,40 @@
 package com.skylabstechke.foody.viewmodels
 
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import com.skylabstechke.foody.data.Repository
+import com.skylabstechke.foody.data.room.FavoriteEntity
+import com.skylabstechke.foody.models.Result
+import com.skylabstechke.foody.utils.Utils
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
-class FavoriteViewModel @ViewModelInject constructor() : ViewModel() {
+class FavoriteViewModel @ViewModelInject constructor(
+    private var repository: Repository,
+    private val utils: Utils
+) : ViewModel() {
+    val readFavorite: LiveData<List<FavoriteEntity>> = repository.localDs.getFav().asLiveData()
+
+    fun insertFav(result: Result) {
+        val favoriteEntity = FavoriteEntity(
+            result
+        )
+        safeInsertFav(favoriteEntity)
+    }
+    fun
+
+    private fun safeInsertFav(favoriteEntity: FavoriteEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                repository.localDs.insertFav(favoriteEntity)
+            } catch (e: Exception) {
+                utils.toast(e.toString())
+            }
+        }
+
+
 }
