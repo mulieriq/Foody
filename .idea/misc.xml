@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_error_placeholder.xml" value="0.157" />
         <entry key="app/src/main/res/layout/activity_details.xml" value="0.334375" />
+        <entry key="app/src/main/res/layout/fragment_favorite_recipes.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_ingredients.xml" value="0.3338541666666667" />
         <entry key="app/src/main/res/layout/fragment_instructions.xml" value="0.14375" />
         <entry key="app/src/main/res/layout/fragment_overview.xml" value="0.67" />
