@@ -1,9 +1,6 @@
 package com.skylabstechke.foody.data.room
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 
@@ -14,6 +11,18 @@ interface RecipesDao {
 
     @Query("SELECT * FROM recipes_table ORDER BY id ASC")
     fun readRecipes(): Flow<List<RecipesEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertFavorites(favoriteEntity: FavoriteEntity)
+
+    @Query("SELECT * FROM favorite_table ORDER BY id ASC")
+    fun readFavorities(): Flow<List<FavoriteEntity>>
+
+    @Delete
+    suspend fun deleteFavorite(favoriteEntity: FavoriteEntity)
+
+    @Query("DELETE FROM favorite_table")
+    suspend fun deleteAllFav(favoriteEntity: FavoriteEntity)
 
 
 }
