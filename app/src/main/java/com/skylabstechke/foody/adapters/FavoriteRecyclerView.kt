@@ -2,9 +2,10 @@ package com.skylabstechke.foody.adapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.skylabstechke.foody.databinding.FavoriteRowLayoutBinding
 
 class FavoriteRecyclerView : RecyclerView.Adapter<FavoriteRecyclerView.MyViewHolder>() {
-    class MyViewHolder: RecyclerView.ViewHolder() {
+    class MyViewHolder(private var binding:FavoriteRowLayoutBinding): RecyclerView.ViewHolder(binding.root) {
 
 
     }
