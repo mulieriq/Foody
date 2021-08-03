@@ -1,5 +1,6 @@
 package com.skylabstechke.foody.data
 
+import com.skylabstechke.foody.data.room.FavoriteEntity
 import com.skylabstechke.foody.data.room.RecipesDao
 import com.skylabstechke.foody.data.room.RecipesEntity
 import kotlinx.coroutines.flow.Flow
@@ -15,5 +16,21 @@ class LocalDataSource @Inject constructor(
 
     fun readDatabase(): Flow<List<RecipesEntity>> {
         return recipesDao.readRecipes()
+    }
+
+    fun getFav(): Flow<List<FavoriteEntity>> {
+        return recipesDao.readFavorite()
+    }
+
+    suspend fun insertFav(favoriteEntity: FavoriteEntity) {
+        return recipesDao.insertFavorites(favoriteEntity)
+    }
+
+    suspend fun deleteFav(favoriteEntity: FavoriteEntity) {
+        return recipesDao.deleteFavorite(favoriteEntity)
+    }
+
+    suspend fun deleteAllFav(favoriteEntity: FavoriteEntity) {
+        return recipesDao.deleteAllFav()
     }
 }

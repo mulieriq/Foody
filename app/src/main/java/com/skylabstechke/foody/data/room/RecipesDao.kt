@@ -16,13 +16,13 @@ interface RecipesDao {
     suspend fun insertFavorites(favoriteEntity: FavoriteEntity)
 
     @Query("SELECT * FROM favorite_table ORDER BY id ASC")
-    fun readFavorities(): Flow<List<FavoriteEntity>>
+    fun readFavorite(): Flow<List<FavoriteEntity>>
 
     @Delete
     suspend fun deleteFavorite(favoriteEntity: FavoriteEntity)
 
     @Query("DELETE FROM favorite_table")
-    suspend fun deleteAllFav(favoriteEntity: FavoriteEntity)
+    suspend fun deleteAllFav()
 
 
 }
