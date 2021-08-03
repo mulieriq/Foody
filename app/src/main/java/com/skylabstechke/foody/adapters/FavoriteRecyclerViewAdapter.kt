@@ -51,7 +51,6 @@ class FavoriteRecyclerViewAdapter :
 
 
     fun setData(newData: List<FavoriteEntity>) {
-
         val diffUtil = RecipesDiffUtil(favoriteList, newData)
         val diffUtilCalc = DiffUtil.calculateDiff(diffUtil)
         diffUtilCalc.dispatchUpdatesTo(this)
