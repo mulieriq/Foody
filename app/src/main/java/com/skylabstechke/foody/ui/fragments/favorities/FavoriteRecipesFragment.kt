@@ -7,14 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.skylabstechke.foody.R
-import com.skylabstechke.foody.adapters.FavoriteRecyclerView
-import kotlinx.android.synthetic.main.fragment_favorite_recipes.*
+import com.skylabstechke.foody.adapters.FavoriteRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_favorite_recipes.view.*
-import kotlinx.android.synthetic.main.placeholder_row.view.*
 
 class FavoriteRecipesFragment : Fragment() {
 
-    private val favoriteRecyclerView by lazy { FavoriteRecyclerView() }
+    private val favoriteRecyclerView by lazy { FavoriteRecyclerViewAdapter() }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
