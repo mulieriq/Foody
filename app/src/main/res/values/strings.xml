@@ -16,4 +16,5 @@
     <string name="name">Name</string>
     <string name="imageDescription">image</string>
     <string name="cups">Cups</string>
+    <string name="no_favorite_at_the_moment">No Favorite At The Moment</string>
 </resources>

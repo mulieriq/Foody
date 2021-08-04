@@ -21,8 +21,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/favoriteRecyclerView"
-            android:layout_width="409dp"
-            android:layout_height="729dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -36,13 +36,16 @@
             android:layout_height="150dp"
             app:tint="@color/black"
             android:alpha=".7"
+            android:visibility="invisible"
+            readDFavoriteDatabase="@{favoriteViewModel.readFavorite}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.39"
-            app:srcCompat="@drawable/ic_menu_book" />
+            app:srcCompat="@drawable/ic_menu_book"
+            android:contentDescription="TODO" />
 
         <TextView
             android:id="@+id/textView8"
@@ -53,7 +56,9 @@
             android:textStyle="bold"
             android:textSize="18sp"
             android:alpha=".5"
-            android:text="No Favorite At The Moment"
+            android:text="@string/no_favorite_at_the_moment"
+            android:visibility="invisible"
+           readDFavoriteDatabase2="@{favoriteViewModel.readFavorite}"
             app:layout_constraintEnd_toEndOf="@+id/fav_icon"
             app:layout_constraintStart_toStartOf="@+id/fav_icon"
             app:layout_constraintTop_toBottomOf="@+id/fav_icon" />

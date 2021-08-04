@@ -18,7 +18,7 @@ class FavoriteViewModel @ViewModelInject constructor(
     private var repository: Repository,
     private val utils: Utils
 ) : ViewModel() {
-    val readFavorite: LiveData<List<FavoriteEntity>> = repository.localDs.getFav().asLiveData()
+    val readFavorite: LiveData<List<FavoriteEntity>>? = repository.localDs.getFav().asLiveData()
 
     fun insertFav(result: Result) {
         val favoriteEntity = FavoriteEntity(
