@@ -10,6 +10,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="4dp"
+
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
         tools:context=".ui.fragments.favorities.FavoriteRecipesFragment">
 
 

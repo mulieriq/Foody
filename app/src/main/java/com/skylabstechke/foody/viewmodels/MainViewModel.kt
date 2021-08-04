@@ -70,11 +70,10 @@ class MainViewModel @ViewModelInject constructor(
 
         try {
             Log.d("API", "CALLED")
-
             val response = repository.remoteDs.getRecipes(queries)
+            Log.d("API RESPONSE CALL", response.body().toString())
             recipesResponse.value = handleFoodRecipesResponse(response)
             //offline cache
-
             val foodRecipe = recipesResponse.value!!.data
             Log.d("API", foodRecipe.toString())
             if (foodRecipe != null) {
@@ -82,7 +81,8 @@ class MainViewModel @ViewModelInject constructor(
             }
 
         } catch (e: Exception) {
-            Log.d("RECIPE","AN error occured")
+            NetworkResult.Error(e.toString(),data = null)
+            Log.d("RECIPE","AN error occured $e")
         }
 
 
@@ -95,6 +95,7 @@ class MainViewModel @ViewModelInject constructor(
     }
 
     private fun handleFoodRecipesResponse(response: Response<FoodRecipe>): NetworkResult<FoodRecipe>? {
+        Log.d("API RESPONSE",response.body().toString())
         when {
             response.message().toString().contains("timeout") -> {
                 return NetworkResult.Error("Timeout")

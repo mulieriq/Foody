@@ -2,7 +2,7 @@ package com.skylabstechke.foody.utils
 
 class Constants {
     companion object {
-        const val API_KEY = "3ebfff5f4fd849bea702b5b5df175767"
+        const val API_KEY = "fcbe63a2aca04dc9af84b4fc74eefb59"
         const val BASE_URL = "https://api.spoonacular.com"
         private const val IMAGE_SIZE = "ingredients_250x250"
         const val IMAGE_BASE_URL = "https://spoonacular.com/cdn/$IMAGE_SIZE/"
