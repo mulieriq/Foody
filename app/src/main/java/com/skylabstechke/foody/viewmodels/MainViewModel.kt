@@ -81,9 +81,8 @@ class MainViewModel @ViewModelInject constructor(
                 offlineCacheRecipe(foodRecipe)
             }
 
-
         } catch (e: Exception) {
-            recipesResponse.value = NetworkResult.Error("Recipes not found.")
+            Log.d("RECIPE","AN error occured")
         }
 
 

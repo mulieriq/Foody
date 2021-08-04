@@ -66,7 +66,9 @@ class DetailsActivity : AppCompatActivity() {
                 detailsLayput,
                 "Success",
                 Snackbar.LENGTH_LONG
-            ).show()
+            ).apply {
+                getColor(R.color.red)
+            }.show()
         }
         return super.onOptionsItemSelected(item)
     }

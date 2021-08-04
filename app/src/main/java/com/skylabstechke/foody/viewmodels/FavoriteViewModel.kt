@@ -22,7 +22,7 @@ class FavoriteViewModel @ViewModelInject constructor(
 
     fun insertFav(result: Result) {
         val favoriteEntity = FavoriteEntity(
-            0,
+
             result
         )
         safeInsertFav(favoriteEntity)
@@ -30,7 +30,7 @@ class FavoriteViewModel @ViewModelInject constructor(
 
     fun deleteFav(result: Result) {
         val favoriteEntity = FavoriteEntity(
-            0,
+
             result
         )
         safeDeleteFav(favoriteEntity)
