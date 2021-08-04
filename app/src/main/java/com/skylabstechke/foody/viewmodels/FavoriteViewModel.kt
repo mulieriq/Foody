@@ -22,6 +22,7 @@ class FavoriteViewModel @ViewModelInject constructor(
 
     fun insertFav(result: Result) {
         val favoriteEntity = FavoriteEntity(
+            0,
             result
         )
         safeInsertFav(favoriteEntity)
@@ -29,6 +30,7 @@ class FavoriteViewModel @ViewModelInject constructor(
 
     fun deleteFav(result: Result) {
         val favoriteEntity = FavoriteEntity(
+            0,
             result
         )
         safeDeleteFav(favoriteEntity)
@@ -41,7 +43,6 @@ class FavoriteViewModel @ViewModelInject constructor(
     private fun safeDeleteAllFav() = viewModelScope.launch {
         try {
             repository.localDs.deleteAllFav()
-            utils.toast("Deleted Successfully")
 
         } catch (e: Exception) {
             Log.d("DELETE ERROR", e.toString())
@@ -51,7 +52,6 @@ class FavoriteViewModel @ViewModelInject constructor(
     private fun safeDeleteFav(favoriteEntity: FavoriteEntity) = viewModelScope.launch {
         try {
             repository.localDs.deleteFav(favoriteEntity)
-            utils.toast("Deleted Successfully")
 
         } catch (e: Exception) {
             Log.d("DELETE ERROR", e.toString())
@@ -64,9 +64,8 @@ class FavoriteViewModel @ViewModelInject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 repository.localDs.insertFav(favoriteEntity)
-                utils.toast("Saved Successfully")
             } catch (e: Exception) {
-                utils.toast(e.toString())
+                Log.d("ERROR BOSS",e.toString())
             }
         }
 

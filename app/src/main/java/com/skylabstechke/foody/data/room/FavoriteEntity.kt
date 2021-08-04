@@ -7,8 +7,7 @@ import com.skylabstechke.foody.utils.Constants.Companion.FAVORITE_TABLE
 
 @Entity(tableName = FAVORITE_TABLE)
  class FavoriteEntity(
-    var favoriteEntity: Result
- ){
     @PrimaryKey(autoGenerate = true)
-     var id = 0
- }
+    var id:Int = 0,
+    var favoriteEntity: Result
+ )
