@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+            <variable
+                name="favoriteViewModel"
+                type="com.skylabstechke.foody.viewmodels.FavoriteViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="4dp"
-
         android:layout_marginStart="4dp"
+
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         tools:context=".ui.fragments.favorities.FavoriteRecipesFragment">
 
@@ -24,8 +26,38 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            tools:listitem="@layout/favorite_row_layout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/favorite_row_layout" />
+
+        <ImageView
+            android:id="@+id/fav_icon"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:tint="@color/black"
+            android:alpha=".7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.39"
+            app:srcCompat="@drawable/ic_menu_book" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:alpha=".5"
+            android:text="No Favorite At The Moment"
+            app:layout_constraintEnd_toEndOf="@+id/fav_icon"
+            app:layout_constraintStart_toStartOf="@+id/fav_icon"
+            app:layout_constraintTop_toBottomOf="@+id/fav_icon" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
