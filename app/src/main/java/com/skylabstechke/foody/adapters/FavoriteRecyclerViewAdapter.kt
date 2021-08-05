@@ -1,7 +1,6 @@
 package com.skylabstechke.foody.adapters
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
+import android.view.*
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
@@ -14,7 +13,7 @@ import com.skylabstechke.foody.utils.RecipesDiffUtil
 import kotlinx.android.synthetic.main.favorite_row_layout.view.*
 
 class FavoriteRecyclerViewAdapter :
-    RecyclerView.Adapter<FavoriteRecyclerViewAdapter.MyViewHolder>() {
+    RecyclerView.Adapter<FavoriteRecyclerViewAdapter.MyViewHolder>() , ActionMode.Callback {
 
     private var favoriteList = emptyList<FavoriteEntity>()
 
@@ -63,5 +62,21 @@ class FavoriteRecyclerViewAdapter :
         val diffUtilCalc = DiffUtil.calculateDiff(diffUtil)
         diffUtilCalc.dispatchUpdatesTo(this)
         favoriteList = newData
+    }
+
+    override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDestroyActionMode(mode: ActionMode?) {
+        TODO("Not yet implemented")
     }
 }
