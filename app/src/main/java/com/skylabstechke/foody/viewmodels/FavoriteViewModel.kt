@@ -26,12 +26,9 @@ class FavoriteViewModel @ViewModelInject constructor(
         safeInsertFav(favoriteEntity)
     }
 
-    fun deleteFav(result: Result) {
-        val favoriteEntity = FavoriteEntity(
-            0,
-            result
-        )
-        safeDeleteFav(favoriteEntity)
+    fun deleteFav(result: FavoriteEntity) {
+
+        safeDeleteFav(result)
     }
 
     fun deleteAllFav() {

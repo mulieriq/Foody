@@ -1,27 +1,33 @@
 package com.skylabstechke.foody.ui.activities
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.skylabstechke.foody.R
 import com.skylabstechke.foody.adapters.PagerAdapter
+import com.skylabstechke.foody.data.room.FavoriteEntity
 import com.skylabstechke.foody.ui.fragments.details.IngredientsFragment
 import com.skylabstechke.foody.ui.fragments.details.InstructionsFragment
 import com.skylabstechke.foody.ui.fragments.details.OverviewFragment
 import com.skylabstechke.foody.viewmodels.FavoriteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_details.*
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
     private val args by navArgs<DetailsActivityArgs>()
-    private val favoriteViewModel : FavoriteViewModel by viewModels<FavoriteViewModel>()
+    private val favoriteViewModel: FavoriteViewModel by viewModels<FavoriteViewModel>()
+    private var recipeSaved = false;
+    private var savedRecipeId = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
@@ -50,26 +56,86 @@ class DetailsActivity : AppCompatActivity() {
         )
         viewpager.adapter = adapter
         tabLayout.setupWithViewPager(viewpager)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.details_fav_menu,menu)
+        menuInflater.inflate(R.menu.details_fav_menu, menu)
+        val menuItem = menu?.findItem(R.id.detailsFavorite)
+        checkSavedRecipe(menuItem!!)
         return true
+    }
+
+    private fun checkSavedRecipe(menuItem: MenuItem) {
+        favoriteViewModel.readFavorite.observe(this) {
+            try {
+                for (savedRecipe in it) {
+                    if (savedRecipe.favoriteEntity.id == args.result.id) {
+                        changeColor(menuItem, R.color.red)
+                        savedRecipeId = savedRecipe.id
+                        recipeSaved = true
+
+                    }
+                }
+
+            } catch (e: Exception) {
+                Log.d("Details Activity", e.toString())
+            }
+        }
+
+    }
+
+    private fun removeFromFav(item: MenuItem) {
+        val favoriteEntity = FavoriteEntity(
+            savedRecipeId,
+            args.result
+        )
+
+        favoriteViewModel.deleteFav(favoriteEntity)
+        changeColor(item, R.color.white)
+        recipeSaved = false
+        snac("Removed")
+    }
+
+    private fun saveRecipe(item: MenuItem) {
+        favoriteViewModel.insertFav(args.result)
+        changeColor(item, R.color.red)
+        recipeSaved = true
+        savedRecipeId = args.result.id!!
+        snac("Successfully saved")
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             finish()
-        }else if(item.itemId == R.id.detailsFavorite){
-            favoriteViewModel.insertFav(args.result)
-            Snackbar.make(
-                detailsLayput,
-                "Success",
-                Snackbar.LENGTH_LONG
-            ).apply {
-                getColor(R.color.red)
-            }.show()
+        } else if (item.itemId == R.id.detailsFavorite && !recipeSaved) {
+            saveRecipe(item)
+        } else if (item.itemId == R.id.detailsFavorite && recipeSaved) {
+            removeFromFav(item)
+
         }
         return super.onOptionsItemSelected(item)
     }
+
+    private fun changeColor(item: MenuItem, color: Int) {
+        item.icon.setTint(ContextCompat.getColor(this, color))
+
+    }
+
+    private fun snac(msg: String) {
+        Snackbar.make(
+            detailsLayput,
+            msg,
+            Snackbar.LENGTH_LONG
+        ).apply {
+            getColor(R.color.red)
+        }.show()
+    }
+
+    private val checkRecipeAvailability = lifecycleScope.launch {
+        favoriteViewModel.readFavorite.observeForever {
+            it.contains(args.result)
+        }
+    }
+
 }
