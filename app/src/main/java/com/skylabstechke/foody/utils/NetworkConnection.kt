@@ -13,6 +13,7 @@ class NetworkConnection : ConnectivityManager.NetworkCallback() {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         connectivityManager.registerDefaultNetworkCallback(this)
+
         var isConnected = false;
 
         connectivityManager.allNetworks.forEach { network ->

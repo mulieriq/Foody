@@ -98,8 +98,9 @@ class FavoriteRecyclerViewAdapter(
         applyStatusBarColor(R.color.statusBarColor)
 
     }
-    private fun applyStatusBarColor(color:Int){
-        requireActivity.window.statusBarColor = ContextCompat.getColor(requireActivity,color)
+
+    private fun applyStatusBarColor(color: Int) {
+        requireActivity.window.statusBarColor = ContextCompat.getColor(requireActivity, color)
 
     }
 }
