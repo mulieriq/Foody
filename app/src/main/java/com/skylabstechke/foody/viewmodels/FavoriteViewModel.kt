@@ -9,20 +9,18 @@ import androidx.lifecycle.viewModelScope
 import com.skylabstechke.foody.data.Repository
 import com.skylabstechke.foody.data.room.FavoriteEntity
 import com.skylabstechke.foody.models.Result
-import com.skylabstechke.foody.utils.Utils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
 class FavoriteViewModel @ViewModelInject constructor(
     private var repository: Repository,
-    private val utils: Utils
 ) : ViewModel() {
     val readFavorite: LiveData<List<FavoriteEntity>> = repository.localDs.getFav().asLiveData()
 
     fun insertFav(result: Result) {
         val favoriteEntity = FavoriteEntity(
-
+            0,
             result
         )
         safeInsertFav(favoriteEntity)
@@ -30,7 +28,7 @@ class FavoriteViewModel @ViewModelInject constructor(
 
     fun deleteFav(result: Result) {
         val favoriteEntity = FavoriteEntity(
-
+            0,
             result
         )
         safeDeleteFav(favoriteEntity)
@@ -65,7 +63,7 @@ class FavoriteViewModel @ViewModelInject constructor(
             try {
                 repository.localDs.insertFav(favoriteEntity)
             } catch (e: Exception) {
-                Log.d("ERROR BOSS",e.toString())
+                Log.d("ERROR BOSS", e.toString())
             }
         }
 
