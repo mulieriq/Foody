@@ -1,10 +1,8 @@
 package com.skylabstechke.foody.ui.fragments.favorities
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.skylabstechke.foody.R
@@ -30,10 +28,19 @@ class FavoriteRecipesFragment : Fragment() {
        //val view =  inflater.inflate(R.layout.fragment_favorite_recipes, container, false)
         binding?.lifecycleOwner = this
         binding?.favoriteViewModel = favoriteViewModel
+        setHasOptionsMenu(true)
 
         setUpRecyclerView()
         readDatabase()
         return binding?.root
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     private fun readDatabase(){
