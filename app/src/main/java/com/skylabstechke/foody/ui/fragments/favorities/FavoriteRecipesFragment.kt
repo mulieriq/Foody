@@ -60,4 +60,6 @@ class FavoriteRecipesFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }

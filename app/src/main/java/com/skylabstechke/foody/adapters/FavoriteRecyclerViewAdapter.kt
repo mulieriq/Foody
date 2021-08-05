@@ -1,6 +1,7 @@
 package com.skylabstechke.foody.adapters
 
 import android.view.*
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
@@ -78,6 +79,7 @@ class FavoriteRecyclerViewAdapter(
 
     override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
         mode?.menuInflater?.inflate(R.menu.fav_delete_actionmode, menu)
+        applyStatusBarColor(R.color.contextualStatusBarColor)
         return true
     }
 
@@ -93,6 +95,11 @@ class FavoriteRecyclerViewAdapter(
     }
 
     override fun onDestroyActionMode(mode: ActionMode?) {
+        applyStatusBarColor(R.color.statusBarColor)
+
+    }
+    private fun applyStatusBarColor(color:Int){
+        requireActivity.window.statusBarColor = ContextCompat.getColor(requireActivity,color)
 
     }
 }
