@@ -5,6 +5,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.skylabstechke.foody.R
 import com.skylabstechke.foody.data.room.FavoriteEntity
 import com.skylabstechke.foody.databinding.FavoriteRowLayoutBinding
 import com.skylabstechke.foody.models.Result
@@ -65,15 +66,19 @@ class FavoriteRecyclerViewAdapter :
     }
 
     override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
-        TODO("Not yet implemented")
+      mode?.menuInflater?.inflate(R.menu.fav_delete_actionmode,menu)
+        return true
     }
 
     override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean {
         TODO("Not yet implemented")
+        return true
+
     }
 
     override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
         TODO("Not yet implemented")
+        return true
     }
 
     override fun onDestroyActionMode(mode: ActionMode?) {
