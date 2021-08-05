@@ -18,4 +18,5 @@
     <string name="cups">Cups</string>
     <string name="no_favorite_at_the_moment">No Favorite At The Moment</string>
     <string name="todo">TODO</string>
+    <string name="delete_all">Delete All</string>
 </resources>

@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/layout/recipes_bottom_sheet.xml" value="0.2953125" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.19895833333333332" />
         <entry key="app/src/main/res/menu/details_fav_menu.xml" value="0.22" />
+        <entry key="app/src/main/res/menu/fav_delete_actionmode.xml" value="0.13958333333333334" />
       </map>
     </option>
   </component>
