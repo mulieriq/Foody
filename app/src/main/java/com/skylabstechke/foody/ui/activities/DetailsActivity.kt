@@ -69,7 +69,7 @@ class DetailsActivity : AppCompatActivity() {
     private fun checkSavedRecipe(menuItem: MenuItem) {
         favoriteViewModel.readFavorite.observe(this) {
             try {
-                for (savedRecipe in it) {
+                for (savedRecipe in it)  {
                     if (savedRecipe.favoriteEntity.id == args.result.id) {
                         changeColor(menuItem, R.color.red)
                         savedRecipeId = savedRecipe.id
@@ -112,14 +112,12 @@ class DetailsActivity : AppCompatActivity() {
             saveRecipe(item)
         } else if (item.itemId == R.id.detailsFavorite && recipeSaved) {
             removeFromFav(item)
-
         }
-        return super.onOptionsItemSelected(item)
+     return true
     }
 
     private fun changeColor(item: MenuItem, color: Int) {
         item.icon.setTint(ContextCompat.getColor(this, color))
-
     }
 
     private fun snac(msg: String) {
