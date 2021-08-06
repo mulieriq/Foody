@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        app:showAsAction="ifRoom"
+        app:showAsAction="never"
         android:id="@+id/detailsFavorite"
-        android:title="Favorite"
+        android:title="@string/delete_all_"
         android:icon="@drawable/ic_heart"
         android:iconTint="@color/white"
         tools:targetApi="o" />
