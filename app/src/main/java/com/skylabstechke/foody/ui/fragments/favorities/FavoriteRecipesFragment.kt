@@ -8,12 +8,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.skylabstechke.foody.R
 import com.skylabstechke.foody.adapters.FavoriteRecyclerViewAdapter
 import com.skylabstechke.foody.databinding.FragmentFavoriteRecipesBinding
+import com.skylabstechke.foody.utils.RecipesDiffUtil
+import com.skylabstechke.foody.utils.Utils
 import com.skylabstechke.foody.viewmodels.FavoriteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_favorite_recipes.view.*
 
 @AndroidEntryPoint
-class FavoriteRecipesFragment : Fragment() {
+class FavoriteRecipesFragment(
+) : Fragment() {
 
     private val favoriteRecyclerView by lazy { FavoriteRecyclerViewAdapter(requireActivity()) }
     private val favoriteViewModel:FavoriteViewModel by viewModels()
@@ -36,11 +39,26 @@ class FavoriteRecipesFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
+
+        if (item.itemId == R.id.detailsFavorite){
+            deleteAllFav()
+        }
+        return true
+    }
+
+    private fun deleteAllFav() {
+       favoriteViewModel.readFavorite.observe(viewLifecycleOwner){
+           if (!it.isNullOrEmpty()){
+               favoriteViewModel.deleteAllFav()
+           }else{
+               favoriteViewModel.toastUtility.toast("No thing to remove")
+           }
+       }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.details_fav_menu,menu)
     }
 
     private fun readDatabase(){
