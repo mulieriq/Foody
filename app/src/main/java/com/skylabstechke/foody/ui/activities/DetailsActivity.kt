@@ -132,10 +132,4 @@ class DetailsActivity : AppCompatActivity() {
         }.show()
     }
 
-    private val checkRecipeAvailability = lifecycleScope.launch {
-        favoriteViewModel.readFavorite.observeForever {
-            it.contains(args.result)
-        }
-    }
-
 }
