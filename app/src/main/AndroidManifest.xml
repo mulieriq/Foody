@@ -23,7 +23,7 @@
         <activity
             android:name=".ui.activities.DetailsActivity"
             android:label="Details"
-            android:theme="@style/DetailsActivityStyle"></activity>
+            android:theme="@style/DetailsActivityStyle" />
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
