@@ -16,11 +16,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.compose.About"
-            android:exported="true"
-            android:label="@string/title_activity_about"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".ui.activities.DetailsActivity"
             android:label="Details"
             android:theme="@style/DetailsActivityStyle" />
