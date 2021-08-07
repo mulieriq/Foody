@@ -25,7 +25,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
     private val args by navArgs<DetailsActivityArgs>()
-    private val favoriteViewModel: FavoriteViewModel by viewModels<FavoriteViewModel>()
+    private val favoriteViewModel: FavoriteViewModel by viewModels()
     private var recipeSaved = false;
     private var savedRecipeId = 0
     override fun onCreate(savedInstanceState: Bundle?) {
