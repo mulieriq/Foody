@@ -18,6 +18,9 @@ class FavoriteRecyclerViewAdapter(
     private var requireActivity: FragmentActivity
 ) :
     RecyclerView.Adapter<FavoriteRecyclerViewAdapter.MyViewHolder>(), ActionMode.Callback {
+    private var  multiSelect : Boolean = false;
+    private val selectedFavorites = ArrayList<FavoriteEntity>()
+    private val myHolders = ArrayList<MyViewHolder>()
 
     private var favoriteList = emptyList<FavoriteEntity>()
 
@@ -27,7 +30,6 @@ class FavoriteRecyclerViewAdapter(
         fun bind(favorite: Result) {
             binding.favorite = favorite
             binding.executePendingBindings()
-
         }
 
         companion object {
