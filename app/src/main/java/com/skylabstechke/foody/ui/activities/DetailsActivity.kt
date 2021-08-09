@@ -60,11 +60,13 @@ class DetailsActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.details_fav_menu, menu)
         val menuItem = menu?.findItem(R.id.detailsFavorite)
+
         checkSavedRecipe(menuItem!!)
         return true
     }
 
     private fun checkSavedRecipe(menuItem: MenuItem) {
+        changeColor(menuItem, R.color.white)
         favoriteViewModel.readFavorite.observe(this) {
             try {
                 for (savedRecipe in it)  {
@@ -128,4 +130,8 @@ class DetailsActivity : AppCompatActivity() {
         }.show()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        savedRecipeId = null
+    }
 }

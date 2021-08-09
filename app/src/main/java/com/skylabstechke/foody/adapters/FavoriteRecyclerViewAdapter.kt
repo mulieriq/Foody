@@ -13,14 +13,15 @@ import com.skylabstechke.foody.models.Result
 import com.skylabstechke.foody.ui.fragments.favorities.FavoriteRecipesFragmentDirections
 import com.skylabstechke.foody.utils.RecipesDiffUtil
 import kotlinx.android.synthetic.main.favorite_row_layout.view.*
+import kotlinx.android.synthetic.main.recipe_row_layout.view.*
 
 class FavoriteRecyclerViewAdapter(
     private var requireActivity: FragmentActivity
 ) :
     RecyclerView.Adapter<FavoriteRecyclerViewAdapter.MyViewHolder>(), ActionMode.Callback {
     private var multiSelect: Boolean = false;
-    private val selectedFavorites = ArrayList<FavoriteEntity>()
-    private val myHolders = ArrayList<MyViewHolder>()
+    private val selectedFavorites = arrayListOf<FavoriteEntity>()
+    private val myHolders = arrayListOf<MyViewHolder>()
 
     private var favoriteList = emptyList<FavoriteEntity>()
 
@@ -76,6 +77,33 @@ class FavoriteRecyclerViewAdapter(
         val diffUtilCalc = DiffUtil.calculateDiff(diffUtil)
         diffUtilCalc.dispatchUpdatesTo(this)
         favoriteList = newData
+    }
+
+    private fun applySelection(myViewHolder: MyViewHolder, currentRecipe: FavoriteEntity) {
+
+        if (selectedFavorites.contains(currentRecipe)) {
+            selectedFavorites.remove(currentRecipe)
+            changeRecipeStyle(
+                holder = myViewHolder,
+                R.color.cardBackgroundColor,
+                strokeColor = R.color.strokeColor
+            )
+        } else {
+            selectedFavorites.add(currentRecipe)
+            changeRecipeStyle(myViewHolder, R.color.cardBackgroundLightColor, R.color.colorPrimary)
+        }
+
+    }
+
+    private fun changeRecipeStyle(holder: MyViewHolder, backgroundColor: Int, strokeColor: Int) {
+        holder.itemView.fragment_row_layout.setBackgroundColor(
+            ContextCompat.getColor(
+                requireActivity,
+                backgroundColor
+            )
+        )
+        holder.itemView.row_cardView.strokeColor =
+            ContextCompat.getColor(requireActivity, strokeColor)
     }
 
     override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
