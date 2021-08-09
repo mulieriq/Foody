@@ -13,7 +13,6 @@ import com.skylabstechke.foody.models.Result
 import com.skylabstechke.foody.ui.fragments.favorities.FavoriteRecipesFragmentDirections
 import com.skylabstechke.foody.utils.RecipesDiffUtil
 import kotlinx.android.synthetic.main.favorite_row_layout.view.*
-import kotlinx.android.synthetic.main.recipe_row_layout.view.*
 
 class FavoriteRecyclerViewAdapter(
     private var requireActivity: FragmentActivity
@@ -60,9 +59,9 @@ class FavoriteRecyclerViewAdapter(
             )
         holder.itemView.fragment_row_layout.setOnClickListener {
 
-            if (multiSelect){
-                applySelection(holder,favoriteList[position])
-            }else{
+            if (multiSelect) {
+                applySelection(holder, favoriteList[position])
+            } else {
                 holder.itemView.findNavController().navigate(action)
             }
 
@@ -70,12 +69,12 @@ class FavoriteRecyclerViewAdapter(
 
         holder.itemView.setOnLongClickListener {
 
-            if (!multiSelect){
+            if (!multiSelect) {
                 multiSelect = true
                 requireActivity.startActionMode(this)
-                applySelection(holder,favoriteList[position])
+                applySelection(holder, favoriteList[position])
                 true
-            }else{
+            } else {
                 multiSelect = false
                 false
             }
@@ -125,10 +124,18 @@ class FavoriteRecyclerViewAdapter(
             ContextCompat.getColor(requireActivity, strokeColor)
     }
 
-    private fun applyActionModeTitle(){
-        when (selectedFavorites.size){
+    private fun applyActionModeTitle() {
+        when (selectedFavorites.size) {
             0 -> {
                 mActionMode.finish()
+            }
+            1 -> {
+                mActionMode.title = "${selectedFavorites.size} item selected"
+            }
+            else -> {
+
+                mActionMode.title = "${selectedFavorites.size} items selected"
+
             }
         }
     }
@@ -152,11 +159,11 @@ class FavoriteRecyclerViewAdapter(
     }
 
     override fun onDestroyActionMode(mode: ActionMode?) {
-        multiSelect=false
+        multiSelect = false
         selectedFavorites.clear()
         applyStatusBarColor(R.color.statusBarColor)
         myHolders.forEach {
-            changeRecipeStyle(it,R.color.cardBackgroundColor,R.color.strokeColor)
+            changeRecipeStyle(it, R.color.cardBackgroundColor, R.color.strokeColor)
         }
 
     }
