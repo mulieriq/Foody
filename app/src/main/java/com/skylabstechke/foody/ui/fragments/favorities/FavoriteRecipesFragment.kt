@@ -56,7 +56,7 @@ class FavoriteRecipesFragment(
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.details_fav_menu, menu)
+        inflater.inflate(R.menu.favorite_delete_all, menu)
     }
 
     private fun readDatabase() {
