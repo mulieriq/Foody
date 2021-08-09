@@ -57,7 +57,7 @@ class FavoriteRecyclerViewAdapter(
             FavoriteRecipesFragmentDirections.actionFavoriteRecipesFragmentToDetailsActivity2(
                 favoriteRecipe
             )
-        holder.itemView.fragment_row_layout.setOnClickListener {
+        holder.itemView.fragment_row_layout_favorite.setOnClickListener {
 
             if (multiSelect) {
                 applySelection(holder, favoriteList[position])
@@ -114,7 +114,7 @@ class FavoriteRecyclerViewAdapter(
     }
 
     private fun changeRecipeStyle(holder: MyViewHolder, backgroundColor: Int, strokeColor: Int) {
-        holder.itemView.fragment_row_layout.setBackgroundColor(
+        holder.itemView.fragment_row_layout_favorite.setBackgroundColor(
             ContextCompat.getColor(
                 requireActivity,
                 backgroundColor
@@ -173,8 +173,8 @@ class FavoriteRecyclerViewAdapter(
 
     }
 
-    fun clearContextualActionMode(){
-        if (this::mActionMode.isInitialized){
+    fun clearContextualActionMode() {
+        if (this::mActionMode.isInitialized) {
             mActionMode.finish()
         }
     }

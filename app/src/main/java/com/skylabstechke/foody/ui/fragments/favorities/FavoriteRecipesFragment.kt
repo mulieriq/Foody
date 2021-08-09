@@ -30,7 +30,6 @@ class FavoriteRecipesFragment(
         binding?.lifecycleOwner = this
         binding?.favoriteViewModel = favoriteViewModel
         setHasOptionsMenu(true)
-
         setUpRecyclerView()
         readDatabase()
         return binding?.root
@@ -38,7 +37,7 @@ class FavoriteRecipesFragment(
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        if (item.itemId == R.id.detailsFavorite) {
+        if (item.itemId == R.id.deleteFavoriteAll) {
             deleteAllFav()
         }
         return true
