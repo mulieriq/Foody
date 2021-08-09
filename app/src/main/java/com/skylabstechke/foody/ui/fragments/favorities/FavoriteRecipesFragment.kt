@@ -77,6 +77,7 @@ class FavoriteRecipesFragment(
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        favoriteRecyclerView.clearContextualActionMode()
     }
 
 

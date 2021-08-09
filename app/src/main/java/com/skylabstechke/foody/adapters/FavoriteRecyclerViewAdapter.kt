@@ -172,4 +172,10 @@ class FavoriteRecyclerViewAdapter(
         requireActivity.window.statusBarColor = ContextCompat.getColor(requireActivity, color)
 
     }
+
+    fun clearContextualActionMode(){
+        if (this::mActionMode.isInitialized){
+            mActionMode.finish()
+        }
+    }
 }
