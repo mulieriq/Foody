@@ -57,12 +57,27 @@ class FavoriteRecyclerViewAdapter(
                 favoriteRecipe
             )
         holder.itemView.fragment_row_layout.setOnClickListener {
-            holder.itemView.findNavController().navigate(action)
+
+            if (multiSelect){
+                applySelection(holder,favoriteList[position])
+            }else{
+                holder.itemView.findNavController().navigate(action)
+            }
+
         }
 
         holder.itemView.setOnLongClickListener {
-            requireActivity.startActionMode(this)
-            true
+
+            if (!multiSelect){
+                multiSelect = true
+                requireActivity.startActionMode(this)
+                applySelection(holder,favoriteList[position])
+                true
+            }else{
+                multiSelect = false
+                false
+            }
+
         }
 
     }
@@ -102,7 +117,7 @@ class FavoriteRecyclerViewAdapter(
                 backgroundColor
             )
         )
-        holder.itemView.row_cardView.strokeColor =
+        holder.itemView.row_cardViewFav.strokeColor =
             ContextCompat.getColor(requireActivity, strokeColor)
     }
 
@@ -124,6 +139,8 @@ class FavoriteRecyclerViewAdapter(
     }
 
     override fun onDestroyActionMode(mode: ActionMode?) {
+        multiSelect=false
+        selectedFavorites.clear()
         applyStatusBarColor(R.color.statusBarColor)
 
     }
