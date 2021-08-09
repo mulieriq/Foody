@@ -22,6 +22,7 @@ class FavoriteRecyclerViewAdapter(
     private var multiSelect: Boolean = false;
     private val selectedFavorites = arrayListOf<FavoriteEntity>()
     private val myHolders = arrayListOf<MyViewHolder>()
+    private lateinit var mActionMode: ActionMode
 
     private var favoriteList = emptyList<FavoriteEntity>()
 
@@ -104,9 +105,11 @@ class FavoriteRecyclerViewAdapter(
                 R.color.cardBackgroundColor,
                 strokeColor = R.color.strokeColor
             )
+            applyActionModeTitle()
         } else {
             selectedFavorites.add(currentRecipe)
             changeRecipeStyle(myViewHolder, R.color.cardBackgroundLightColor, R.color.colorPrimary)
+            applyActionModeTitle()
         }
 
     }
@@ -122,8 +125,17 @@ class FavoriteRecyclerViewAdapter(
             ContextCompat.getColor(requireActivity, strokeColor)
     }
 
+    private fun applyActionModeTitle(){
+        when (selectedFavorites.size){
+            0 -> {
+                mActionMode.finish()
+            }
+        }
+    }
+
     override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
         mode?.menuInflater?.inflate(R.menu.fav_delete_actionmode, menu)
+        mActionMode = mode!!
         applyStatusBarColor(R.color.contextualStatusBarColor)
         return true
     }
