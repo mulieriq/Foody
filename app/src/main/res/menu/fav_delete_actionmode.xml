@@ -5,7 +5,7 @@
     <group>
         <item
             android:id="@+id/deleteAll"
-            android:icon="@drawable/ic_sad"
+            android:icon="@drawable/ic_delete"
             android:iconTint="@color/white"
             android:title="@string/delete_all"
             app:showAsAction="ifRoom"
