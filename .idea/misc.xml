@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.19895833333333332" />
         <entry key="app/src/main/res/menu/details_fav_menu.xml" value="0.22" />
         <entry key="app/src/main/res/menu/fav_delete_actionmode.xml" value="0.13958333333333334" />
+        <entry key="app/src/main/res/menu/favorite_delete_all.xml" value="0.228125" />
       </map>
     </option>
   </component>
