@@ -50,6 +50,7 @@ class FavoriteRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        myHolders.add(holder)
         val favoriteRecipe: Result = favoriteList[position].favoriteEntity
         holder.bind(favoriteRecipe)
         val action =
@@ -142,6 +143,9 @@ class FavoriteRecyclerViewAdapter(
         multiSelect=false
         selectedFavorites.clear()
         applyStatusBarColor(R.color.statusBarColor)
+        myHolders.forEach {
+            changeRecipeStyle(it,R.color.cardBackgroundColor,R.color.strokeColor)
+        }
 
     }
 
