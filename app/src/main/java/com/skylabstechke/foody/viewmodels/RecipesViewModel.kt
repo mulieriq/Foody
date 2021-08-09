@@ -1,10 +1,7 @@
 package com.skylabstechke.foody.viewmodels
 
-import android.app.Application
-import android.content.Context
 import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
@@ -97,8 +94,8 @@ class RecipesViewModel @ViewModelInject constructor(
         if (!networkStatus) {
             utils.toast("No internet connection")
             saveBackOnline(true)
-        }else if (networkStatus){
-            if (wentOffline){
+        } else if (networkStatus) {
+            if (wentOffline) {
                 utils.toast("We are back Online ")
                 saveBackOnline(false)
             }
@@ -106,7 +103,7 @@ class RecipesViewModel @ViewModelInject constructor(
         }
     }
 
-    private fun saveBackOnline(wentOffline:Boolean)= viewModelScope.launch (Dispatchers.IO){
+    private fun saveBackOnline(wentOffline: Boolean) = viewModelScope.launch(Dispatchers.IO) {
         dataStoreRepository.saveBackOnline(wentOffline)
     }
 

@@ -23,7 +23,7 @@ class FavoriteViewModel @ViewModelInject constructor(
 
     fun insertFav(result: Result) {
         val favoriteEntity = FavoriteEntity(
-            0,
+            result.id,
             result
         )
         safeInsertFav(favoriteEntity)

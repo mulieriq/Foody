@@ -8,7 +8,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.skylabstechke.foody.R
@@ -20,14 +19,13 @@ import com.skylabstechke.foody.ui.fragments.details.OverviewFragment
 import com.skylabstechke.foody.viewmodels.FavoriteViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_details.*
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
     private val args by navArgs<DetailsActivityArgs>()
     private val favoriteViewModel: FavoriteViewModel by viewModels()
     private var recipeSaved = false;
-    private var savedRecipeId = 0
+   private  var savedRecipeId:Int ? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
@@ -74,7 +72,6 @@ class DetailsActivity : AppCompatActivity() {
                         changeColor(menuItem, R.color.red)
                         savedRecipeId = savedRecipe.id
                         recipeSaved = true
-
                     }
                 }
 
@@ -86,23 +83,24 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun removeFromFav(item: MenuItem) {
+      val itemId:Int =   savedRecipeId ?: 0
         val favoriteEntity = FavoriteEntity(
-            savedRecipeId,
+            itemId,
             args.result
         )
 
         favoriteViewModel.deleteFav(favoriteEntity)
         changeColor(item, R.color.white)
         recipeSaved = false
-        snac("Removed")
+        snackBarPrompt("Removed")
     }
 
     private fun saveRecipe(item: MenuItem) {
         favoriteViewModel.insertFav(args.result)
         changeColor(item, R.color.red)
         recipeSaved = true
-        savedRecipeId = args.result.id!!
-        snac("Successfully saved")
+        savedRecipeId = args.result.id
+        snackBarPrompt("Successfully saved")
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -120,7 +118,7 @@ class DetailsActivity : AppCompatActivity() {
         item.icon.setTint(ContextCompat.getColor(this, color))
     }
 
-    private fun snac(msg: String) {
+    private fun snackBarPrompt(msg: String) {
         Snackbar.make(
             detailsLayput,
             msg,

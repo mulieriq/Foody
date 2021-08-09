@@ -1,9 +1,5 @@
 package com.skylabstechke.foody.viewmodels
 
-import android.app.Application
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
@@ -81,8 +77,8 @@ class MainViewModel @ViewModelInject constructor(
             }
 
         } catch (e: Exception) {
-            NetworkResult.Error(e.toString(),data = null)
-            Log.d("RECIPE","AN error occured $e")
+            NetworkResult.Error(e.toString(), data = null)
+            Log.d("RECIPE", "AN error occured $e")
         }
 
 
@@ -95,7 +91,7 @@ class MainViewModel @ViewModelInject constructor(
     }
 
     private fun handleFoodRecipesResponse(response: Response<FoodRecipe>): NetworkResult<FoodRecipe>? {
-        Log.d("API RESPONSE",response.body().toString())
+        Log.d("API RESPONSE", response.body().toString())
         when {
             response.message().toString().contains("timeout") -> {
                 return NetworkResult.Error("Timeout")

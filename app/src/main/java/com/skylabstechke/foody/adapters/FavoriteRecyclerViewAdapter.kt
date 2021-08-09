@@ -18,7 +18,7 @@ class FavoriteRecyclerViewAdapter(
     private var requireActivity: FragmentActivity
 ) :
     RecyclerView.Adapter<FavoriteRecyclerViewAdapter.MyViewHolder>(), ActionMode.Callback {
-    private var  multiSelect : Boolean = false;
+    private var multiSelect: Boolean = false;
     private val selectedFavorites = ArrayList<FavoriteEntity>()
     private val myHolders = ArrayList<MyViewHolder>()
 
@@ -60,7 +60,6 @@ class FavoriteRecyclerViewAdapter(
         }
 
         holder.itemView.setOnLongClickListener {
-
             requireActivity.startActionMode(this)
             true
         }
