@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.recipesFragment,
                 R.id.favoriteRecipesFragment,
-                R.id.foodJokeFragment
             )
         )
         //set app bar configs
